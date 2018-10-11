@@ -31,13 +31,11 @@ namespace System.Collections.Generic
         /// <param name="source"></param>
         /// <param name="action"></param>
         /// <returns></returns>
-        public static IEnumerable<T> SelectEach<T>(this IEnumerable<T> source, Action<T> action)
+        public static IEnumerable<T> SelectEach<T>(this IEnumerable<T> source, Func<T,T> action)
         {
             foreach (var item in source)
             {
-                action(item);
-
-                yield return item;
+               yield return action(item);
             }
         }
 
