@@ -58,11 +58,15 @@ namespace Rene.Utils.Core.UnitTest.Extensions
         public void ToGuid_Detect_BadFormatGuid()
         {
             var strGuid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
-           
-            Exception ex = Assert.Throws<FormatException>(() =>StringExtensions.ToGuid(strGuid));
+            var expected = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
 
-            Assert.Equal($"{strGuid} is not a valid GUID",ex.Message);
-            
+            //Guid result=Guid.Empty;
+            Action act = () => strGuid.ToGuid();
+
+            Exception ex = Assert.Throws<FormatException>(act);
+
+            Assert.Equal($"{strGuid} is not a valid GUID", ex.Message);
+            Assert.Equal(expected, strGuid);
         }
 
         [Fact]
@@ -73,14 +77,14 @@ namespace Rene.Utils.Core.UnitTest.Extensions
 
             var result = StringExtensions.ToBase64(strInput);
 
-            Assert.Equal(expected,result);
+            Assert.Equal(expected, result);
         }
 
         [Fact]
         public void FromBase64_Convert()
         {
             const string base64Input = "SGVsbG8gV29ybGQhISE=";
-            const string expected  = "Hello World!!!";
+            const string expected = "Hello World!!!";
 
             var result = StringExtensions.ToStringFromBase64(base64Input);
 
