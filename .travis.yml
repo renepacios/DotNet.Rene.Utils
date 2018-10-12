@@ -1,0 +1,7 @@
+language: csharp
+solution: Rene.Utils.Core.sln
+mono: none
+dotnet: 2.1
+script:
+ - dotnet restore Rene.Utils.Core.sln
+ - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
