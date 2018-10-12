@@ -2,6 +2,9 @@
 
 Rene.Utils is a set of useful utilities and extensions of recurrent usage
 
+## Builds
+[![Build Status](https://travis-ci.org/rene15009/.net-Dev-Utils.svg?branch=master)](https://travis-ci.org/rene15009/.net-Dev-Utils)
+
  ## Install
 
  Coming soon in nuget
