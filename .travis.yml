@@ -1,6 +1,5 @@
 language: csharp
 solution: Rene.Utils.Core.sln
-mono: none
 dotnet: 2.1
 script:
  - dotnet restore Rene.Utils.Core.sln
