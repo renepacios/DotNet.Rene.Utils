@@ -9,7 +9,7 @@ namespace Rene.Utils.Core.UnitTest.Extensions
         [Fact]
         public void Append_Add_Item_To_End()
         {
-            var source = new List<int> {0, 1, 2, 3, 4, 5, 6, 7};
+            var source = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7 };
 
             var result = EnumerableExtensions.Append(source, -1);
 
@@ -26,14 +26,14 @@ namespace Rene.Utils.Core.UnitTest.Extensions
         [Fact]
         public void Index_Must_Be_Continius()
         {
-            var source = new List<int> {0, 1, 2, 3, 4, 5, 6, 7};
+            var source = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7 };
             source.ForEach((item, i) => Assert.Equal(item, i));
         }
 
         [Fact]
         public void Prepend_Add_Item_To_Start()
         {
-            var source = new List<int> {0, 1, 2, 3, 4, 5, 6, 7};
+            var source = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7 };
 
             var result = EnumerableExtensions.Prepend(source, 8);
 
@@ -49,12 +49,33 @@ namespace Rene.Utils.Core.UnitTest.Extensions
         [Fact]
         public void SelectEach_Apply_Function()
         {
-            var source = new List<int> {0, 1, 2, 3, 4, 5, 6, 7};
-            var expected = new List<int> {0, 2, 4, 6, 8, 10, 12, 14};
+            var source = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7 };
+            var expected = new List<int> { 0, 2, 4, 6, 8, 10, 12, 14 };
 
             var result = source.SelectEach(n => n *= 2);
 
             Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void AnyNotNull_Match()
+        {
+            var source = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7 };
+
+            Assert.True(source.AnyNotNull());
+
+            Assert.True(source.AnyNotNull(w => 3 == w));
+
+            Assert.False(source.AnyNotNull(w => 8 == w));
+
+        }
+
+        [Fact]
+        public void AnyNotNull_With_Null_Instances()
+        {
+            List<int> source=null;
+            Assert.False(source.AnyNotNull());
+       
         }
     }
 }

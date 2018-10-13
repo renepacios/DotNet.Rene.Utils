@@ -11,6 +11,9 @@
 
 
 // ReSharper disable once CheckNamespace
+
+using System.Linq;
+
 namespace System.Collections.Generic
 {
     public static class EnumerableExtensions
@@ -74,5 +77,20 @@ namespace System.Collections.Generic
 
             yield return item;
         }
+
+
+        /// <summary>
+        ///  Determines whether a sequence contains any elements. Can be used with null instances
+        /// </summary>
+        /// <typeparam name="T">  The type of the elements of source.</typeparam>
+        /// <param name="source">The System.Collections.Generic.IEnumerable`1 to check for emptiness.</param>
+        /// <param name="predicate"> A function to test each element for a condition.</param>
+        /// <returns> true if the source sequence contains any elements; otherwise, false.</returns>
+        public static bool AnyNotNull<T>(this IEnumerable<T> source, Func<T, bool> predicate = null)
+        {
+            if (source == null) return false;
+            return predicate != null ? source.Any(predicate) : source.Any();
+        }
     }
+
 }
