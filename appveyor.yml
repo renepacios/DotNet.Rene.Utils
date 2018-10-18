@@ -31,4 +31,8 @@ test_script:
   - cmd: dotnet test
 on_finish :
   # any cleanup in here
-deploy: off
+deploy:
+- provider: NuGet
+  api_key:
+    secure: idBr3pgdeDrA/roEUDpWSt0azmUMexHUpmhltChZlhef5zfibYRvuyDuHvZo6cj/
+  skip_symbols: true
