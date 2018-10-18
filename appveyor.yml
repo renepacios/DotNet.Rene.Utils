@@ -28,7 +28,7 @@ test_script:
   - cmd: dotnet restore ./tests/Rene.Utils.Core.UnitTest/Rene.Utils.Core.UnitTest.csproj --verbosity m
   # run the unit tests (requires changing into the test directory)
   - cmd: cd tests\Rene.Utils.Core.UnitTest
-  - cmd: dotnet test
+  - cmd: dotnet xunit
 on_finish :
   # any cleanup in here
 deploy:false
