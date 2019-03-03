@@ -7,13 +7,8 @@
  */
 
 
-
-
-
-// ReSharper disable once CheckNamespace
-
 using System.Linq;
-
+// ReSharper disable once CheckNamespace
 namespace System.Collections.Generic
 {
     public static class EnumerableExtensions
