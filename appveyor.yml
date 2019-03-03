@@ -31,7 +31,9 @@ test_script:
   - cmd: dotnet test
   # any cleanup in here
 deploy:
-- provider: NuGet
-  api_key:
-    secure: idBr3pgdeDrA/roEUDpWSt0azmUMexHUpmhltChZlhef5zfibYRvuyDuHvZo6cj/
-  skip_symbols: false
+    provider: NuGet
+    server:
+    api_key:
+        secure: nZIJzCJalUXcQ05V+Pmx/1Q7hi+6ijNZOZSPklxo+o3ZHbdCxuknDMMZxiZhRcf7
+    skip_symbols: true
+    artifact: /.*\.nupkg/
