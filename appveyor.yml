@@ -17,7 +17,8 @@ before_build:
   - cmd: dotnet restore ./Rene.Utils.Core.sln --verbosity m
 build_script:
   # output will be in ./src/bin/debug/netcoreapp1.1/publish
-  - cmd: dotnet publish ./src/Rene.Utils.Core/Rene.Utils.Core.csproj --verbosity m
+  #- cmd: dotnet publish ./src/Rene.Utils.Core/Rene.Utils.Core.csproj --verbosity m
+  - cmd: dotnet publish ./Rene.Utils.Core.sln  --verbosity m
   # For once the build has completed
 #artifacts:
 # - path: '\src\bin\Debug\netcoreapp1.1\publish'
