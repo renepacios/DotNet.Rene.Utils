@@ -32,10 +32,10 @@ test_script:
   #- cmd: cd tests\Rene.Utils.Core.UnitTest
   - cmd: dotnet test
   # any cleanup in here
-#deploy:
-#    provider: NuGet
-#    server:
-#    api_key:
-#        secure: nZIJzCJalUXcQ05V+Pmx/1Q7hi+6ijNZOZSPklxo+o3ZHbdCxuknDMMZxiZhRcf7
-#    skip_symbols: true
-#    artifact: /.*\.nupkg/
+deploy:
+    provider: NuGet
+    server:
+    api_key:
+        secure: nZIJzCJalUXcQ05V+Pmx/1Q7hi+6ijNZOZSPklxo+o3ZHbdCxuknDMMZxiZhRcf7
+    skip_symbols: true
+    artifact: /.*\.nupkg/
