@@ -13,17 +13,16 @@ before_build:
   # Display .NET Core version
   - cmd: dotnet --version
   # Display minimal restore text
-  #- cmd: dotnet restore ./src/Rene.Utils.Core/Rene.Utils.Core.csproj --verbosity m
-  - cmd: dotnet restore ./Rene.Utils.Core.sln --verbosity m
+  - cmd: dotnet restore ./src/Rene.Utils.Core/Rene.Utils.Core.csproj --verbosity m
+  
 build_script:
   # output will be in ./src/bin/debug/netcoreapp1.1/publish
-  #- cmd: dotnet publish ./src/Rene.Utils.Core/Rene.Utils.Core.csproj --verbosity m
-  - cmd: dotnet publish ./Rene.Utils.Core.sln  --verbosity m
+  - cmd: dotnet publish ./src/Rene.Utils.Core/Rene.Utils.Core.csproj --verbosity m
   # For once the build has completed
-#artifacts:
-# - path: '\src\bin\Debug\netcoreapp1.1\publish'
-#   name: WebSite
-#   type: WebDeployPackage
+artifacts:
+ - path: '\src\bin\Debug\netcoreapp1.1\publish'
+   name: WebSite
+   type: WebDeployPackage
 clone_depth: 1
 test_script:
   # restore packages for our unit tests
