@@ -5,7 +5,7 @@ Rene.Utils is a set of useful utilities and extensions of recurrent usage
 ## Builds
 
 [![Build Status](https://travis-ci.com/rene15009/DotNet.Rene.Utils.svg?branch=master)](https://travis-ci.com/rene15009/DotNet.Rene.Utils)
-[![Build status](https://ci.appveyor.com/api/projects/status/h7hn4uo4t3qif9pt/branch/master?svg=true)](https://ci.appveyor.com/project/rene15009/dotnet-rene-utils/branch/master)
+[//]: # [![Build status](https://ci.appveyor.com/api/projects/status/h7hn4uo4t3qif9pt/branch/master?svg=true)](https://ci.appveyor.com/project/rene15009/dotnet-rene-utils/branch/master)
 
  ## Install
 
