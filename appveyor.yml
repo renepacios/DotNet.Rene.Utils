@@ -1,40 +1,31 @@
-# Help: https://andrewlock.net/adding-travis-ci-to-a-net-core-app/
-version: '1.0.{build}'
-image: Visual Studio 2017
+version: 0.2.{build}
+pull_requests:
+  do_not_increment_build_number: true
 branches:
   only:
   - master
-init:
-  # Good practise, because Windows line endings are different from Unix/Linux ones
-  - cmd: git config --global core.autocrlf true
-install:
-  # Install repo specific stuff here
+skip_tags: true
+image: Visual Studio 2019
+configuration: Release
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}.{build}'
+  version_prefix: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+nuget:
+  disable_publish_on_pr: true
 before_build:
-  # Display .NET Core version
-  - cmd: dotnet --version
-  # Display minimal restore text
-  - cmd: dotnet restore ./src/Rene.Utils.Core/Rene.Utils.Core.csproj --verbosity m
-  
-build_script:
-  # output will be in ./src/bin/debug/netcoreapp1.1/publish
-  - cmd: dotnet publish ./src/Rene.Utils.Core/Rene.Utils.Core.csproj --verbosity m
-  # For once the build has completed
-artifacts:
- - path: '\src\bin\Debug\netcoreapp1.1\publish'
-   name: WebSite
-   type: WebDeployPackage
-clone_depth: 1
-test_script:
-  # restore packages for our unit tests
-  #- cmd: dotnet restore ./tests/Rene.Utils.Core.UnitTest/Rene.Utils.Core.UnitTest.csproj --verbosity m
-  # run the unit tests (requires changing into the test directory)
-  #- cmd: cd tests\Rene.Utils.Core.UnitTest
-  - cmd: dotnet test
-  # any cleanup in here
+- cmd: nuget restore
+build:
+  publish_nuget: true
+  publish_nuget_symbols: true
+  verbosity: minimal
 deploy:
-    provider: NuGet
-    server:
-    api_key:
-        secure: nZIJzCJalUXcQ05V+Pmx/1Q7hi+6ijNZOZSPklxo+o3ZHbdCxuknDMMZxiZhRcf7
-    skip_symbols: true
-    artifact: /.*\.nupkg/
+- provider: NuGet
+  api_key:
+    secure: idBr3pgdeDrA/roEUDpWSt0azmUMexHUpmhltChZlhef5zfibYRvuyDuHvZo6cj/
+  skip_symbols: false
