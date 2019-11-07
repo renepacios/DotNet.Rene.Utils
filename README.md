@@ -7,6 +7,8 @@ Rene.Utils is a set of useful utilities and extensions of recurrent usage
 [![Build Status](https://travis-ci.com/rene15009/DotNet.Rene.Utils.svg?branch=master)](https://travis-ci.com/rene15009/DotNet.Rene.Utils)
 [![Build Status](https://ci.appveyor.com/api/projects/status/github/rene15009/DotNet.Rene.Utils?branch=master&svg=true&passingText=master%20-%20OK)](https://ci.appveyor.com/api/projects/status/github/rene15009/DotNet.Rene.Utils?branch=master&svg=true&passingText=master%20-%20OK)
 
+[![NuGet](https://img.shields.io/nuget/v/Rene.Utils.Core.svg?style=plastic)](https://www.nuget.org/packages/Rene.Utils.Core/) 
+[![NuGet](https://img.shields.io/nuget/dt/Rene.Utils.Core.svg?style=plastic)](https://www.nuget.org/packages/Rene.Utils.Core/)
  ## Install
 
  Coming soon in nuget
