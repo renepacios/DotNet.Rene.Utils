@@ -80,7 +80,7 @@
     <Rule Id="CA1300" Action="Error" />
     <Rule Id="CA1301" Action="Error" />
     <Rule Id="CA1302" Action="Error" />
-    <Rule Id="CA1303" Action="Error" />
+    <Rule Id="CA1303" Action="None" />
     <Rule Id="CA1304" Action="Error" />
     <Rule Id="CA1305" Action="Error" />
     <Rule Id="CA1306" Action="Error" />
@@ -1027,5 +1027,8 @@
   </Rules>
   <Rules AnalyzerId="Microsoft.EntityFrameworkCore.Analyzers" RuleNamespace="Microsoft.EntityFrameworkCore.Analyzers">
     <Rule Id="EF1000" Action="Error" />
+  </Rules>
+  <Rules AnalyzerId="Microsoft.NetCore.Analyzers" RuleNamespace="Microsoft.NetCore.Analyzers">
+    <Rule Id="CA1303" Action="None" />
   </Rules>
 </RuleSet>

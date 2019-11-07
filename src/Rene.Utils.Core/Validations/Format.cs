@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -12,6 +11,7 @@ namespace Rene.Utils.Core.Validations
         /// </summary>
         /// <param name="email">email to validate</param>
         /// <returns>> true if the email has a correct format; otherwise, false. </returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "")]
         public static bool IsValidEmailAddress(this string email)
         {
             try
@@ -22,9 +22,7 @@ namespace Rene.Utils.Core.Validations
                 var rg = new Regex(@"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$");
                 return rg.IsMatch(email);
             }
-#pragma warning disable CS0168 // The variable 'e' is declared but never used
-            catch (Exception e)
-#pragma warning restore CS0168 // The variable 'e' is declared but never used
+            catch (Exception)
             {
                 // Debug.WriteLine(e);
                 return false;
@@ -38,7 +36,7 @@ namespace Rene.Utils.Core.Validations
         /// <returns>is valid uri</returns>
         public static bool IsValidUri(this System.Uri uri)
         {
-            return uri!=null && uri.ToString().IsValidUri();
+            return uri != null && uri.ToString().IsValidUri();
         }
 
         /// <summary>
@@ -50,8 +48,7 @@ namespace Rene.Utils.Core.Validations
         {
             if (string.IsNullOrEmpty(url))
                 return false;
-
-            if (url.IndexOf(".", StringComparison.OrdinalIgnoreCase) == -1)
+                        if (url.IndexOf(".", StringComparison.OrdinalIgnoreCase) == -1)
                 return false;
 
             //http://msdn.microsoft.com/en-us/library/system.url.scheme(v=vs.110).aspx

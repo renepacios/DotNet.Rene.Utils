@@ -7,7 +7,10 @@
  */
 
 
+using System.Globalization;
 using System.Linq;
+using Rene.Utils.Core.Resources;
+
 // ReSharper disable once CheckNamespace
 namespace System.Collections.Generic
 {
@@ -19,8 +22,11 @@ namespace System.Collections.Generic
         /// <typeparam name="T"></typeparam>
         /// <param name="source"></param>
         /// <param name="action"></param>
+        /// <exception cref="NullReferenceException"></exception>
         public static void ForEach<T>(this IEnumerable<T> source, Action<T, int> action)
         {
+           if (source == null) throw new NullReferenceException(string.Format(CultureInfo.CurrentCulture, ExceptionMessages.NulleReferenceExceptioX0, nameof(source)));
+
             var i = 0;
             foreach (var item in source)
             {
@@ -36,9 +42,13 @@ namespace System.Collections.Generic
         /// <typeparam name="T"></typeparam>
         /// <param name="source"></param>
         /// <param name="action"></param>
+        /// <exception cref="NullReferenceException"></exception>
         /// <returns></returns>
         public static IEnumerable<T> SelectEach<T>(this IEnumerable<T> source, Func<T, T> action)
         {
+
+            if (source == null) throw new NullReferenceException(string.Format(CultureInfo.CurrentCulture, ExceptionMessages.NulleReferenceExceptioX0, nameof(source)));
+
             foreach (var item in source)
                 yield return action(item);
         }
@@ -53,6 +63,7 @@ namespace System.Collections.Generic
         public static IEnumerable<T> Prepend<T>(this IEnumerable<T> source, T item)
         {
             yield return item;
+            if (source == null) yield break;
             foreach (var l in source)
                 yield return l;
         }
@@ -67,6 +78,12 @@ namespace System.Collections.Generic
         /// <returns></returns>
         public static IEnumerable<T> Append<T>(this IEnumerable<T> list, T item)
         {
+            if (list == null)
+            {
+                yield return item;
+                yield break;
+            }
+
             foreach (var l in list)
                 yield return l;
 

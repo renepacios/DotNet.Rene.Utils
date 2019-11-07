@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using Rene.Utils.Core.Resources;
 
 namespace Rene.Utils.Core.SimpleCache
 {
@@ -38,9 +40,10 @@ namespace Rene.Utils.Core.SimpleCache
 
         public TValue GetOrCreate(TKey key, Func<TValue> createItem, TimeSpan? expiresAfter = null)
         {
-//            if (_cache.TryGetValue(key, out var cached)) return cached.Value;
+            //            if (_cache.TryGetValue(key, out var cached)) return cached.Value;
             if (TryGetValue(key, out var cacheEntry)) return cacheEntry;
 
+            if (createItem == null) throw new NullReferenceException(string.Format(CultureInfo.CurrentCulture, ExceptionMessages.NulleReferenceExceptioX0, nameof(createItem)));
             // Key not in cache, so get data.
             cacheEntry = createItem();
 
@@ -53,12 +56,12 @@ namespace Rene.Utils.Core.SimpleCache
         {
             if (!_cache.TryGetValue(key, out var cached))
             {
-                cacheValue= default(TValue);
+                cacheValue = default(TValue);
                 return false;
             }
 
 
-          
+
             if (DateTimeOffset.Now - cached.Created >= cached.ExpiresAfter)
             {
                 _cache.Remove(key);

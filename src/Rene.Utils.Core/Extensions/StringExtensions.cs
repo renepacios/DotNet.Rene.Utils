@@ -70,8 +70,9 @@ namespace System
         public static int ToInt(this string s)
         {
             if (string.IsNullOrEmpty(s)) return 0;
-            int.TryParse(s.Trim(), out var salida);
-            return salida;
+            return int.TryParse(s.Trim(), out var salida)
+                ? salida
+                : 0;
         }
 
         #endregion
