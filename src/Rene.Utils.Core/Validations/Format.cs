@@ -22,7 +22,9 @@ namespace Rene.Utils.Core.Validations
                 var rg = new Regex(@"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$");
                 return rg.IsMatch(email);
             }
+#pragma warning disable CS0168 // The variable 'e' is declared but never used
             catch (Exception e)
+#pragma warning restore CS0168 // The variable 'e' is declared but never used
             {
                 // Debug.WriteLine(e);
                 return false;
@@ -34,15 +36,25 @@ namespace Rene.Utils.Core.Validations
         /// </summary>
         /// <param name="uri">uri to validate</param>
         /// <returns>is valid uri</returns>
-        public static bool IsValidUri(this string uri)
+        public static bool IsValidUri(this System.Uri uri)
         {
-            if (string.IsNullOrEmpty(uri))
+            return uri!=null && uri.ToString().IsValidUri();
+        }
+
+        /// <summary>
+        /// Validate an url
+        /// </summary>
+        /// <param name="url">url to validate</param>
+        /// <returns>is valid url</returns>
+        public static bool IsValidUri(this string url)
+        {
+            if (string.IsNullOrEmpty(url))
                 return false;
 
-            if (uri.IndexOf(".", StringComparison.OrdinalIgnoreCase) == -1)
+            if (url.IndexOf(".", StringComparison.OrdinalIgnoreCase) == -1)
                 return false;
 
-            //http://msdn.microsoft.com/en-us/library/system.uri.scheme(v=vs.110).aspx
+            //http://msdn.microsoft.com/en-us/library/system.url.scheme(v=vs.110).aspx
             var schemes = new[]
             {
                 "file",
@@ -60,12 +72,12 @@ namespace Rene.Utils.Core.Validations
                 "uuid"
             };
 
-            var hasValidSchema = schemes.Any(s => uri.StartsWith(s, StringComparison.OrdinalIgnoreCase));
+            var hasValidSchema = schemes.Any(s => url.StartsWith(s, StringComparison.OrdinalIgnoreCase));
 
             if (!hasValidSchema)
-                uri = "http://" + uri;
+                url = "http://" + url;
 
-            return Uri.IsWellFormedUriString(uri, UriKind.Absolute);
+            return Uri.IsWellFormedUriString(url, UriKind.Absolute);
         }
     }
 }
