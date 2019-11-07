@@ -11,7 +11,11 @@ Rene.Utils is a set of useful utilities and extensions of recurrent usage
 [![NuGet](https://img.shields.io/nuget/dt/Rene.Utils.Core.svg?style=plastic)](https://www.nuget.org/packages/Rene.Utils.Core/)
  ## Install
 
- Coming soon in nuget
+First, [install NuGet](http://docs.nuget.org/docs/start-here/installing-nuget). Then, install [Rene.Utils](https://www.nuget.org/packages/Rene.Utils.Core/) from the package manager console:
+
+```
+PM> Install-Package Rene.Utils.Core 
+```
 
 
 ### .NET Framework suport
@@ -21,10 +25,10 @@ DotNet Rene Utils is built using .net Standard 2.0 and supports the `4.0+ .NET F
 ### Release Notes
 
 #### License
-DotNet Rene Utils is licensed under The MIT License (MIT), check the [LICENSE](https://github.com/rene15009/ClosedXML.TableReader/blob/master/LICENSE) file for details.
+DotNet Rene Utils is licensed under The MIT License (MIT), check the [LICENSE](https://github.com/rene15009/DotNet.Rene.Utils/blob/master/LICENSE) file for details.
 
 #### Version
-0.1.0.0
+0.2.42.42
 
 #### Development
 C# 
