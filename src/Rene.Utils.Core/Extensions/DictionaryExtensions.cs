@@ -1,10 +1,18 @@
 ﻿
 
-// ReSharper disable once CheckNamespace
+/*
+ *  Copyright (C) 2019  René Pacios
+ *
+ *  You can use  for Personal or commercial presuppose, but you must maintain the copyright information and author
+ *  This code is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OF ANY KIND, USE ON YOUR OWN RISK
+ *
+ */
+
 
 using System.Globalization;
 using Rene.Utils.Core.Resources;
 
+// ReSharper disable once CheckNamespace
 namespace System.Collections.Generic
 {
     public static class DictionaryExtensions
