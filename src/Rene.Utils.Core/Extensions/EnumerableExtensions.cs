@@ -25,7 +25,7 @@ namespace System.Collections.Generic
         /// <exception cref="NullReferenceException"></exception>
         public static void ForEach<T>(this IEnumerable<T> source, Action<T, int> action)
         {
-           if (source == null) throw new NullReferenceException(string.Format(CultureInfo.CurrentCulture, ExceptionMessages.NulleReferenceExceptioX0, nameof(source)));
+            if (source == null) throw new NullReferenceException(string.Format(CultureInfo.CurrentCulture, ExceptionMessages.NulleReferenceExceptioX0, nameof(source)));
 
             var i = 0;
             foreach (var item in source)
@@ -95,7 +95,7 @@ namespace System.Collections.Generic
         ///  Determines whether a sequence contains any elements. Can be used with null instances
         /// </summary>
         /// <typeparam name="T">  The type of the elements of source.</typeparam>
-        /// <param name="source">The System.Collections.Generic.IEnumerable`1 to check for emptiness.</param>
+        /// <param name="source">The System.Collections.Generic.IEnumerable.</param>
         /// <param name="predicate"> A function to test each element for a condition.</param>
         /// <returns> true if the source sequence contains any elements; otherwise, false.</returns>
         public static bool AnyNotNull<T>(this IEnumerable<T> source, Func<T, bool> predicate = null)
@@ -103,6 +103,16 @@ namespace System.Collections.Generic
             if (source == null) return false;
             return predicate != null ? source.Any(predicate) : source.Any();
         }
+
+
+        /// <summary>
+        ///  Convert Enumerable of T into Enumerable of  tuple with T and Index
+        /// </summary>
+        /// <typeparam name="T">  The type of the elements of source.</typeparam>
+        /// <param name="source">The System.Collections.Generic.IEnumerable.</param>
+        /// <returns> true if the source sequence contains any elements; otherwise, false.</returns>
+        public static IEnumerable<(T item, int index)> AsEnumerableWithIndex<T>(this IEnumerable<T> source)
+            => source?.Select((item, index) => (item, index));
     }
 
 }

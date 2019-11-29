@@ -48,7 +48,7 @@ namespace Rene.Utils.Core.Validations
         {
             if (string.IsNullOrEmpty(url))
                 return false;
-                        if (url.IndexOf(".", StringComparison.OrdinalIgnoreCase) == -1)
+            if (url.IndexOf(".", StringComparison.OrdinalIgnoreCase) == -1)
                 return false;
 
             //http://msdn.microsoft.com/en-us/library/system.url.scheme(v=vs.110).aspx
