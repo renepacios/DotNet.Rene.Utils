@@ -75,7 +75,31 @@ namespace Rene.Utils.Core.UnitTest.Extensions
         {
             List<int> source=null;
             Assert.False(source.AnyNotNull());
-       
+
+            Assert.Null(source);
+        }
+
+
+        [Fact]
+        public void AsEnumerableWithIndex()
+        {
+            IList<string> source=new List<string>()
+            {
+                "0","1","2"
+            };
+
+            var i = 0;
+
+            foreach ((string item, int index) tuple in source.AsEnumerableWithIndex())
+            {
+                Assert.Equal(tuple.item, source[i]);
+                Assert.Equal(tuple.index,i);
+                i++;
+            }
+
+            Assert.Equal(source.Count,i);
+
+
         }
     }
 }
