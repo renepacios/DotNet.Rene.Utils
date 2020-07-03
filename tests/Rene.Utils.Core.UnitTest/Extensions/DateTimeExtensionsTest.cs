@@ -18,6 +18,12 @@ namespace Rene.Utils.Core.UnitTest.Extensions
             Assert.True(expected.IsBetween(expected, expected.AddMilliseconds(1)));
             Assert.True(expected.IsBetween(expected.AddMilliseconds(-1), expected));
             Assert.True(expected.IsBetween(expected, expected));
+
+            //Test when limits is swap
+            Assert.True(expected.IsBetween(expected.AddMilliseconds(1), expected.AddMilliseconds(-1)));
+            Assert.True(expected.IsBetween(expected, expected.AddMilliseconds(-1)));
+            Assert.True(expected.IsBetween(expected.AddMilliseconds(1), expected));
+
         }
 
         [Fact]
@@ -25,18 +31,26 @@ namespace Rene.Utils.Core.UnitTest.Extensions
         {
             var expected = DateTime.Now;
 
-            Assert.False(expected.IsBetween(expected, expected.AddMilliseconds(-1)));
-            Assert.False(expected.IsBetween(expected.AddMilliseconds(1), expected));
-         }
+
+
+            Assert.False(expected.IsBetween(expected.AddMilliseconds(-2), expected.AddMilliseconds(-1)));
+            Assert.False(expected.IsBetween(expected.AddMilliseconds(1), expected.AddMilliseconds(2)));
+
+            //Test when limits is swap
+            Assert.False(expected.IsBetween(expected.AddHours(-1), expected.AddHours(-2)));
+            Assert.False(expected.IsBetween(expected.AddHours(2), expected.AddHours(1)));
+           
+
+        }
 
         [Fact]
         public void Date_Is_End_Of_Day()
         {
             var today = DateTime.UtcNow;
 
-            var expected=new DateTime(today.Year,today.Month,today.Day,23,59,59,999);
+            var expected = new DateTime(today.Year, today.Month, today.Day, 23, 59, 59, 999);
 
-            Assert.Equal(expected.Ticks,today.EndOfDay().Ticks);
+            Assert.Equal(expected.Ticks, today.EndOfDay().Ticks);
         }
 
         [Fact]

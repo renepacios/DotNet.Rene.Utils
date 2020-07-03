@@ -17,11 +17,15 @@ namespace System
         /// <param name="date">DateTime from where the calculation will be preformed.</param>
         /// <param name="fromDate">Start date to check for</param>
         /// <param name="toDate">End date to check for</param>
+        /// <remarks>     Parameter order is not relevant </remarks>
         /// <returns>boolean value indicating if the date is between or equal to one of the two values</returns>
         public static bool IsBetween(this DateTime date, DateTime fromDate, DateTime toDate)
         {
             var ticks = date.Ticks;
-            return ticks >= fromDate.Ticks && ticks <= toDate.Ticks;
+            var from = fromDate.MinCompare(toDate);
+            var to = fromDate.MaxCompare(toDate);
+
+            return ticks >= from.Ticks && ticks <= to.Ticks;
         }
 
         /// <summary>
@@ -46,5 +50,24 @@ namespace System
             return date.Date;
         }
 
+
+        /// <summary>
+        /// Get min date between two dates
+        /// </summary>
+        /// <param name="date">Self date</param>
+        /// <param name="dateToCompare">Date to compare</param>
+        /// <returns>Min date between two arguments</returns>
+        public static DateTime MinCompare(this DateTime date, DateTime dateToCompare) 
+            => date.Ticks < dateToCompare.Ticks ? date : dateToCompare;
+
+
+        /// <summary>
+        /// Get max date between two dates
+        /// </summary>
+        /// <param name="date">Self date</param>
+        /// <param name="dateToCompare">Date to compare</param>
+        /// <returns>Max date value between two arguments</returns>
+        public static DateTime MaxCompare(this DateTime date, DateTime dateToCompare) 
+            => date.Ticks > dateToCompare.Ticks ? date : dateToCompare;
     }
 }
