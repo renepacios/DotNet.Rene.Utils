@@ -36,7 +36,7 @@ DotNet Rene Utils is built using .net Standard 2.0 and supports the `4.0+ .NET F
 DotNet Rene Utils is licensed under The MIT License (MIT), check the [LICENSE](https://github.com/rene15009/DotNet.Rene.Utils/blob/master/LICENSE) file for details.
 
 #### Version
-0.2.42.42
+0.2.47.47
 
 #### Development
 C# 

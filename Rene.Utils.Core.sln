@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rene.Utils.Core", "src\Rene.Utils.Core\Rene.Utils.Core.csproj", "{C79F6350-F304-4135-9420-4D67A6B26099}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10.src", "10.src", "{31B4CDDD-AD8B-4451-8EB9-CEECC82EF427}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{31B4CDDD-AD8B-4451-8EB9-CEECC82EF427}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "20.tests", "20.tests", "{617699DC-DFE8-47F1-9046-D61781992DB0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{617699DC-DFE8-47F1-9046-D61781992DB0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rene.Utils.Core.UnitTest", "tests\Rene.Utils.Core.UnitTest\Rene.Utils.Core.UnitTest.csproj", "{2855A8F9-0854-48B3-96C2-3C75807C8B94}"
 EndProject
