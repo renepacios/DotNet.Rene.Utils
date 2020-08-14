@@ -4,8 +4,9 @@ Rene.Utils is a set of useful utilities and extensions of recurrent usage
 
 ## Builds
 [![Build Status](https://rene.visualstudio.com/Github.DotNet.Rene.Utils/_apis/build/status/rene15009.DotNet.Rene.Utils?branchName=master)](https://rene.visualstudio.com/Github.DotNet.Rene.Utils/_build/latest?definitionId=3&branchName=master)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/rene15009/DotNet.Rene.Utils/.NET%20Core?label=build&logo=github)
 [![Build Status](https://travis-ci.com/rene15009/DotNet.Rene.Utils.svg?branch=master)](https://travis-ci.com/rene15009/DotNet.Rene.Utils)
-[![Build Status](https://ci.appveyor.com/api/projects/status/github/rene15009/DotNet.Rene.Utils?branch=master&svg=true&passingText=master%20-%20OK)](https://ci.appveyor.com/api/projects/status/github/rene15009/DotNet.Rene.Utils?branch=master&svg=true&passingText=master%20-%20OK)
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/rene15009/DotNet.Rene.Utils?branch=master&svg=true&passingText=passing%20-%20OK)](https://ci.appveyor.com/api/projects/status/github/rene15009/DotNet.Rene.Utils?branch=master&svg=true&passingText=master%20-%20OK)
 ![AppVeyor tests](https://img.shields.io/appveyor/tests/rene15009/dotnet-rene-utils)
 
 [![GitHub issues](https://img.shields.io/github/issues/rene15009/DotNet.Rene.Utils)](https://github.com/rene15009/DotNet.Rene.Utils/issues)
