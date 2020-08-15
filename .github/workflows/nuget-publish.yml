@@ -30,7 +30,7 @@ jobs:
       id: publish_nuget
       with:
           # Filepath of the project to be packaged, relative to root of repository
-          PROJECT_FILE_PATH: src/Rene.Utils.Core.csproj
+          PROJECT_FILE_PATH: src/Rene.Utils.Core/Rene.Utils.Core.csproj
           
           # NuGet package id, used for version detection & defaults to project name
           PACKAGE_NAME: Rene.Utils.Core
