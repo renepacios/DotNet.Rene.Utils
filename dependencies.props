@@ -1,0 +1,14 @@
+<Project>
+    <PropertyGroup Label="SDK Versions">
+        <NetStandardTargetVersion>netstandard2.1</NetStandardTargetVersion>
+        <NetCoreTargetVersion>netcoreapp3.1</NetCoreTargetVersion>
+        <!--<LangVersion>8.0</LangVersion>-->
+    </PropertyGroup>
+
+  
+    <PropertyGroup Label="Package Versions">
+        <FluentAssertions>5.10.3</FluentAssertions>
+        <Xunit>2.4.1</Xunit>
+    </PropertyGroup>
+
+</Project>

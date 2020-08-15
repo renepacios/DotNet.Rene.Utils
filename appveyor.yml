@@ -24,8 +24,8 @@ build:
   publish_nuget: true
   publish_nuget_symbols: true
   verbosity: minimal
-deploy:
-- provider: NuGet
-  api_key:
-    secure: e3Pg5P610tCMcMypT4V/y3tbr24VANMDZwj7qTtUsDebZiNDKdsDl6hQbzDRpVvZ
-  skip_symbols: true
+#deploy:
+#- provider: NuGet
+#  api_key:
+#    secure: e3Pg5P610tCMcMypT4V/y3tbr24VANMDZwj7qTtUsDebZiNDKdsDl6hQbzDRpVvZ
+#  skip_symbols: true
