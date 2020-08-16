@@ -1,7 +1,7 @@
 ﻿<Project>
   <Import Project="dependencies.props" />
   <PropertyGroup>
-    <Version>0.3.0</Version>
+    <Version>0.3.1</Version>
     <FileVersion>$(Version)</FileVersion>
     <Company>René Pacios</Company>
     <Copyright>Copyright © $(Company) - $([System.DateTime]::Now.Year)</Copyright>
