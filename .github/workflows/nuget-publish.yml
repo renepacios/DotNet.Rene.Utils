@@ -1,6 +1,9 @@
 name: Upload to NuGet
 on:
   push:
+    branches: 
+    - master
+    - main
     tags:
     - v*
 
