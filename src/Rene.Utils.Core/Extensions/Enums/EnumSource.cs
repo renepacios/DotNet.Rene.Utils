@@ -6,8 +6,9 @@ namespace System
     using System.ComponentModel;
     using System.Reflection;
 
-
-    public static class EnumHelper<T>
+    [Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1000:Do not declare static members on generic types",
+        Justification = "Is a Helper Method. Structure is a sortcut to use")]
+    public static class EnumSource<T>
     {
         public static T Parse(string value)
         {
