@@ -22,7 +22,7 @@ namespace Rene.Utils.Core.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ExceptionMessages {
+    public class ExceptionMessages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Rene.Utils.Core.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Rene.Utils.Core.Resources.ExceptionMessages", typeof(ExceptionMessages).Assembly);
@@ -51,7 +51,7 @@ namespace Rene.Utils.Core.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Rene.Utils.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Null reference to {0}.
         /// </summary>
-        internal static string NulleReferenceExceptioX0 {
+        public static string NulleReferenceExceptioX0 {
             get {
                 return ResourceManager.GetString("NulleReferenceExceptioX0", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace Rene.Utils.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Null reference exception.
         /// </summary>
-        internal static string NullReferenceMessage {
+        public static string NullReferenceMessage {
             get {
                 return ResourceManager.GetString("NullReferenceMessage", resourceCulture);
             }

@@ -1,30 +1,51 @@
-name: .NET Core
-
+name: Upload to NuGet
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    tags:
+    - v*
 
 jobs:
   build:
+    env:
+        BUILD_CONFIG: Release
+        PROJECT_NAME: Rene.Utils.Core
 
+    name: Build Start Enviroment
     runs-on: ubuntu-latest
 
-    steps:
+    strategy:
+      matrix:
+        dotnet: [ '2.1.x', '3.1.x' ]
+
+    steps:      
+    - name: Set env. aux vars
+      run: |
+        echo "SOLUTION_NAME=${PROJECT_NAME}.sln">> $GITHUB_ENV
+        echo "TEST_PROJECT_PATH=tests/${PROJECT_NAME}.UnitTest/${PROJECT_NAME}.UnitTest.csproj" >> $GITHUB_ENV
+        echo "PROJECT_PATH=src/${PROJECT_NAME}/${PROJECT_NAME}.csproj" >> $GITHUB_ENV
+
+
+    
     - uses: actions/checkout@v2
 
-    - name: Setup .NET Core
+    - name: Setup .NET Core ${{ matrix.dotnet }}
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.301
+        dotnet-version: ${{ matrix.dotnet }}
 
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore $SOLUTION_NAME
+
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build  $PROJECT_NAME --configuration $BUILD_CONFIG --no-restore
+
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test $PROJECT_NAME --no-restore --verbosity normal
+
+    - name: dotnet pack [$PROJECT_NAME]
+      run: dotnet pack $PROJECT_PATH -c $BUILD_CONFIG --no-build --include-source --include-symbols -o ./artifactsfacts
+
+
     - name: Publish NuGet
       uses: brandedoutcast/publish-nuget@v2.5.5
       id: publish_nuget
