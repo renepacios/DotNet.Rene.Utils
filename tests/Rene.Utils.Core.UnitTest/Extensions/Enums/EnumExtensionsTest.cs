@@ -68,22 +68,22 @@
         [Fact]
         public void EnumHelper_Parse_Should_As_Expected()
         {
-            EnumHelper<MyEnum>.Parse("Zero")
+            EnumSource<MyEnum>.Parse("Zero")
                 .Should()
                 .Be(MyEnum.Zero);
 
 
 
-            EnumHelper<MyEnum>.Parse("One")
+            EnumSource<MyEnum>.Parse("One")
                 .Should()
                 .Be(MyEnum.One, "Enum with Description attribute parse from enum string name");
 
 
-            EnumHelper<MyEnum>.Parse("ZERO")
+            EnumSource<MyEnum>.Parse("ZERO")
                 .Should()
                 .Be(MyEnum.Zero, "Enum parse works ignore case mode");
 
-            EnumHelper<MyEnum>.Parse("one")
+            EnumSource<MyEnum>.Parse("one")
                 .Should()
                 .Be(MyEnum.One, "Enum parse works ignore case mode");
 
@@ -92,7 +92,7 @@
         [Fact]
         public void EnumHelper_GetValues_Should_As_Expected()
         {
-            EnumHelper<MyEnum>
+            EnumSource<MyEnum>
                 .GetValues()
                 .Should()
                 .NotBeEmpty()
@@ -107,7 +107,7 @@
         [Fact]
         public void EnumHelper_GetNames_Should_As_Expected()
         {
-            EnumHelper<MyEnum>
+            EnumSource<MyEnum>
                 .GetNames()
                 .Should()
                 .NotBeEmpty()
@@ -123,7 +123,7 @@
         [Fact]
         public void EnumHelper_GetDisplayValues_Should_As_Expected()
         {
-            EnumHelper<MyEnum>
+            EnumSource<MyEnum>
                 .GetDisplayValues()
                 .Should()
                 .NotBeEmpty()
@@ -140,7 +140,7 @@
         [Fact]
         public void EnumHelper_GetNameValueDescriptions_Should_As_Expected()
         {
-            EnumHelper<MyEnum>
+            EnumSource<MyEnum>
                 .GetNameValueDescriptions()
                 .Should()
                 .NotBeEmpty()
