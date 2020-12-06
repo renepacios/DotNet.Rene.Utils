@@ -1,4 +1,4 @@
-name: Upload Preview to NuGet
+name: Upload Preview to NuGet 
 on:
   push:    
     tags:

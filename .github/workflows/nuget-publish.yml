@@ -37,10 +37,10 @@ jobs:
       run: dotnet restore $SOLUTION_NAME
 
     - name: Build
-      run: dotnet build  $PROJECT_NAME --configuration $BUILD_CONFIG --no-restore
+      run: dotnet build  $PROJECT_PATH --configuration $BUILD_CONFIG --no-restore
 
     - name: Test
-      run: dotnet test $PROJECT_NAME --no-restore --verbosity normal
+      run: dotnet test $TEST_PROJECT_PATH --no-restore --verbosity normal
 
     - name: dotnet pack [$PROJECT_NAME]
       run: dotnet pack $PROJECT_PATH -c $BUILD_CONFIG --no-build --include-source --include-symbols -o ./artifactsfacts
