@@ -3,13 +3,14 @@ on:
   push:    
     tags:
     - preview*
+    - alpha*
 
 jobs:
   build:
     env:
         BUILD_CONFIG: Release
         PROJECT_NAME: Rene.Utils.Core
-        VERSION_SUFFIX: -preview${{ github.run_number }}
+        VERSION_SUFFIX: -preview-${{ github.run_number }}
 
     name: Build Start Enviroment
     runs-on: ubuntu-latest
@@ -38,7 +39,7 @@ jobs:
       run: dotnet restore $SOLUTION_NAME
 
     - name: Build
-      run: dotnet build  $PROJECT_PATH --configuration $BUILD_CONFIG --no-restore
+      run: dotnet build  $PROJECT_PATH --configuration $BUILD_CONFIG --version-suffix $VERSION_SUFFIX --no-restore
 
     - name: Test
       run: dotnet test $TEST_PROJECT_PATH --no-restore --verbosity normal
