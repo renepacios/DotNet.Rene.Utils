@@ -69,7 +69,7 @@ jobs:
          VERSION_REGEX: ^\s*<Version>(.*)<\/Version>\s*$         
          
          # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
-         VERSION_STATIC: 3.1.0-${{evn.VERSION_SUFFIX}}
+         VERSION_STATIC: 3.1.0-${{env.VERSION_SUFFIX}}
       
          # Flag to toggle git tagging, enabled by default
          TAG_COMMIT: true
