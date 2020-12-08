@@ -4,6 +4,7 @@ on:
     tags:
     - preview*
     - alpha*
+  workflow_dispatch:
 
 jobs:
   build:
@@ -40,6 +41,7 @@ jobs:
 
     - name: Build
       run: dotnet build  $PROJECT_PATH --configuration $BUILD_CONFIG --version-suffix $VERSION_SUFFIX --no-restore
+    #  run: dotnet build $SOLUTION_NAME --configuration $BUILD_CONFIG
 
     - name: Test
       run: dotnet test $TEST_PROJECT_PATH --no-restore --verbosity normal
