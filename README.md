@@ -8,6 +8,7 @@ Rene.Utils is a set of useful utilities and extensions of recurrent usage
 [![Build Status](https://ci.appveyor.com/api/projects/status/github/rene15009/DotNet.Rene.Utils?branch=master&svg=true&passingText=passing%20-%20OK)](https://ci.appveyor.com/api/projects/status/github/rene15009/DotNet.Rene.Utils?branch=master&svg=true&passingText=master%20-%20OK)
 ![AppVeyor tests](https://img.shields.io/appveyor/tests/rene15009/dotnet-rene-utils)
 
+![CodeQL](https://github.com/rene15009/DotNet.Rene.Utils/workflows/CodeQL/badge.svg)
 [![GitHub issues](https://img.shields.io/github/issues/rene15009/DotNet.Rene.Utils)](https://github.com/rene15009/DotNet.Rene.Utils/issues)
 [![GitHub forks](https://img.shields.io/github/forks/rene15009/DotNet.Rene.Utils)](https://github.com/rene15009/DotNet.Rene.Utils/network)
 [![GitHub stars](https://img.shields.io/github/stars/rene15009/DotNet.Rene.Utils)](https://github.com/rene15009/DotNet.Rene.Utils/stargazers)
