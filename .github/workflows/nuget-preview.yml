@@ -1,10 +1,10 @@
-name: Upload Preview to NuGet 
+name: Upload Version Preview to NuGet 
 on:
   push:    
     tags:
     - preview*
     - alpha*
- # workflow_dispatch:
+  workflow_dispatch: #to test 
 
 jobs:
   build:
