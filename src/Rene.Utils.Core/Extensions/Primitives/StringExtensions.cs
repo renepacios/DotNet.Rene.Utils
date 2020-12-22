@@ -6,6 +6,8 @@
  *
  */
 
+using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 // ReSharper disable once CheckNamespace
@@ -74,6 +76,31 @@ namespace System
                 ? salida
                 : 0;
         }
+
+
+
+        /// <summary>
+        ///     Returns an enumerable collection of the specified type containing string
+        /// </summary>
+        /// <param name="s">A string containing sequence elements</param>
+        /// <param name="separators">
+        /// An array of  characters that delimit the string sub-elements in s param.
+        /// </param>
+        /// <typeparam name="T">
+        /// The type of the element to return in the collection, this type must implement IConvertible.
+        /// </typeparam>
+        /// <returns>
+        /// An enumerable collection whose elements contain the substrings in this instance that are delimited by one or more characters in separators. 
+        /// </returns>
+        public static IEnumerable<T> SplitTo<T>(this string s, params char[] separators) where T : IConvertible
+        {
+            if (string.IsNullOrEmpty(s)) { yield break; }
+
+
+            foreach (var e in s.Split(separators, StringSplitOptions.None))
+                yield return (T)Convert.ChangeType(e, typeof(T), CultureInfo.InvariantCulture);
+        }
+
 
         #endregion
     }
