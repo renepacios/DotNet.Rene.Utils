@@ -32,17 +32,16 @@ PM> Install-Package Rene.Utils.Core
 ### .NET Framework suport
 DotNet Rene Utils is built using .net Standard 2.1 and supports the `4.0+ .NET Framework` as well as `.NET Core`
 
-### Release Notes
+#### Release Notes
  Coming soon
 
-#### License
-DotNet Rene Utils is licensed under The MIT License (MIT), check the [LICENSE](https://github.com/rene15009/DotNet.Rene.Utils/blob/master/LICENSE) file for details.
+##### License
+`   `DotNet Rene Utils is licensed under The MIT License (MIT), check the [LICENSE](https://github.com/rene15009/DotNet.Rene.Utils/blob/master/LICENSE) file for details.
 
-#### Version
+##### Version
 ![Nuget](https://img.shields.io/nuget/v/Rene.Utils.Core?color=white&label=&style=for-the-badge)
 
-
-#### Development
-C# 
+##### Development
+`   `C# 
 
 
