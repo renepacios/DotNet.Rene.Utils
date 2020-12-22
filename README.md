@@ -41,7 +41,7 @@ DotNet Rene Utils is licensed under The MIT License (MIT), check the [LICENSE](h
 #### Version
 ![Nuget](https://img.shields.io/nuget/v/Rene.Utils.Core?color=white&label=%20&style=for-the-badge)
 
-<img alt="Nuget" src="https://img.shields.io/nuget/v/Rene.Utils.Core?color=white&label=%20&style=for-the-badge">
+<img alt="Nuget" src="https://img.shields.io/nuget/v/Rene.Utils.Core?color=white&label=%20&style=for-the-badge" style="width:80px">
 
 #### Development
 C# 
