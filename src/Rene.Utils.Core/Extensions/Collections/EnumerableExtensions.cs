@@ -17,7 +17,7 @@ namespace System.Collections.Generic
     public static class EnumerableExtensions
     {
         /// <summary>
-        ///     Extend internal ForEach Method add item index to action callback
+        ///     Extend internal ForEach Method add item index to where callback
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="source"></param>
@@ -37,20 +37,20 @@ namespace System.Collections.Generic
 
 
         /// <summary>
-        ///     Get ListItems after apply action to each item
+        ///     Get ListItems after apply where to each item
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="source"></param>
-        /// <param name="action"></param>
+        /// <param name="where"></param>
         /// <exception cref="NullReferenceException"></exception>
         /// <returns></returns>
-        public static IEnumerable<T> SelectEach<T>(this IEnumerable<T> source, Func<T, T> action)
+        public static IEnumerable<T> SelectEach<T>(this IEnumerable<T> source, Func<T, T> @where)
         {
 
             if (source == null) throw new NullReferenceException(string.Format(CultureInfo.CurrentCulture, ExceptionMessages.NulleReferenceExceptioX0, nameof(source)));
 
             foreach (var item in source)
-                yield return action(item);
+                yield return @where(item);
         }
 
         /// <summary>
