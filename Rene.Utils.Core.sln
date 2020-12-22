@@ -16,24 +16,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
-		.travis.yml = .travis.yml
-		appveyor.yml = appveyor.yml
-		azure-pipelines.yml = azure-pipelines.yml
 		dependencies.props = dependencies.props
 		Directory.Build.props = Directory.Build.props
 		.config\dotnet-tools.json = .config\dotnet-tools.json
-		LICENSE = LICENSE
 		README.md = README.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{33FB7DF6-CD06-4D7C-8611-4297904679D3}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{5033CF9C-8484-499C-BAF4-1AB98F425B4E}"
-	ProjectSection(SolutionItems) = preProject
-		.github\workflows\ci.yml = .github\workflows\ci.yml
-		.github\workflows\dotnet-core-build.yml = .github\workflows\dotnet-core-build.yml
-		.github\workflows\nuget-preview.yml = .github\workflows\nuget-preview.yml
-		.github\workflows\nuget-publish.yml = .github\workflows\nuget-publish.yml
 	EndProjectSection
 EndProject
 Global
@@ -57,7 +43,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C79F6350-F304-4135-9420-4D67A6B26099} = {31B4CDDD-AD8B-4451-8EB9-CEECC82EF427}
 		{2855A8F9-0854-48B3-96C2-3C75807C8B94} = {617699DC-DFE8-47F1-9046-D61781992DB0}
-		{5033CF9C-8484-499C-BAF4-1AB98F425B4E} = {33FB7DF6-CD06-4D7C-8611-4297904679D3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A1D89955-ED8F-41C4-8EEA-C435C108999B}

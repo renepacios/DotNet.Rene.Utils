@@ -1,9 +1,10 @@
-name: Upload to NuGet
+name: Upload Version to NuGet
 on:
   push:    
     tags:
     - v*
-
+  workflow_dispatch:
+  
 jobs:
   build:
     env:
@@ -37,13 +38,13 @@ jobs:
       run: dotnet restore $SOLUTION_NAME
 
     - name: Build
-      run: dotnet build  $PROJECT_NAME --configuration $BUILD_CONFIG --no-restore
+      run: dotnet build  $PROJECT_PATH --configuration $BUILD_CONFIG --no-restore
 
     - name: Test
-      run: dotnet test $PROJECT_NAME --no-restore --verbosity normal
+      run: dotnet test $TEST_PROJECT_PATH --no-restore --verbosity normal
 
-    - name: dotnet pack [$PROJECT_NAME]
-      run: dotnet pack $PROJECT_PATH -c $BUILD_CONFIG --no-build --include-source --include-symbols -o ./artifactsfacts
+    #- name: dotnet pack [$PROJECT_NAME]
+    #  run: dotnet pack $PROJECT_PATH -c $BUILD_CONFIG --no-build --include-source --include-symbols -o ./artifacts
 
 
     - name: Publish NuGet
@@ -60,7 +61,7 @@ jobs:
           VERSION_FILE_PATH: Directory.Build.props
 
           # Regex pattern to extract version info in a capturing group
-          VERSION_REGEX: ^\s*<Version>(.*)<\/Version>\s*$
+          VERSION_REGEX: ^\s*<VersionPrefix>(.*)<\/VersionPrefix>\s*$
           
           # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
           # VERSION_STATIC: 1.0.0

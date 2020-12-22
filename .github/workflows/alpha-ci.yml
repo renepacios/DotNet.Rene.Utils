@@ -1,0 +1,58 @@
+name: Alpha Preview Tagged
+# third actions plugins
+#     https://github.com/marketplace/actions/github-tag
+
+on:
+  push:
+    branches: [ disable ]
+  pull_request:
+    branches: [ disable ]
+  
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.301
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+    
+  tag:
+    runs-on:  ubuntu-latest
+    steps:      
+      - name: GitHub Tag
+        # You may pin to the exact commit or the version.
+        # uses: mathieudutour/github-tag-action@cebe9df104b4bd690a6e316f7feacba81948dead
+        uses: mathieudutour/github-tag-action@v5.1
+        with:
+          # Required for permission to tag the repo.
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Which type of bump to use when none explicitly provided (default: `patch`).
+          #default_bump: # optional, default is patch
+          # A prefix to the tag name (default: `v`).
+          tag_prefix: preview- # optional, default is v
+          # A suffix to a pre-release tag name (default: `<branch>`).
+          #append_to_pre_release_tag: # optional
+          # Custom tag name. If specified, it overrides bump settings.
+          #custom_tag: # optional
+          # Comma separated list of release rules. Format: `<keyword>:<release_type>`. Example: `hotfix:patch,pre-feat:preminor`.
+          #custom_release_rules: # optional
+          # Comma separated list of branches (bash reg exp accepted) that will generate the release tags. Other branches and pull-requests generate versions postfixed with the commit hash and do not generate any tag. Examples: `master` or `.*` or `release.*,hotfix.*,master`...
+          #release_branches: release*,hotfix* # optional, default is master
+          # Comma separated list of branches (bash reg exp accepted) that will generate pre-release tags.
+          pre_release_branches: alpha # optional
+          # Boolean to create an annotated tag rather than lightweight.
+          #create_annotated_tag: # optional, default is false
+          # Do not perform tagging, just calculate next version and changelog, then exit.
+          #dry_run: # optional, default is false
