@@ -2,7 +2,8 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Rene.Utils.Core.Validations
+// ReSharper disable once CheckNamespace
+namespace System
 {
     public static class Format
     {

@@ -1,6 +1,15 @@
 language: csharp
 solution: Rene.Utils.Core.sln
-mono: none
+mono: latest
 dotnet: 3.1
+# install:
+#   - nuget restore Rene.Utils.Core.sln
+#   - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
+# script:
+#   - msbuild /p:Configuration=Release Rene.Utils.Core.sln
+#   - mono ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./tests/Rene.Utils.Core.UnitTest/bin/Release/netcoreapp3.1/Rene.Utils.Core.UnitTest.dll
+  
 script:
  - dotnet restore Rene.Utils.Core.sln
+ - dotnet build ./src/Rene.Utils.Core/Rene.Utils.Core.csproj -c Release --no-restore
+ - dotnet test ./tests/Rene.Utils.Core.UnitTest/Rene.Utils.Core.UnitTest.csproj --no-restore --verbosity normal
