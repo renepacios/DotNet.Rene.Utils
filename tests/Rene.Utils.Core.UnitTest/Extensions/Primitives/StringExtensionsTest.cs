@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace Rene.Utils.Core.UnitTest.Extensions
+namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
 {
     public class StringExtensionsTest
     {
