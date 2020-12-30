@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using FluentAssertions;
 using Xunit;
 
-namespace Rene.Utils.Core.UnitTest.Extensions
+namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
 {
     public class StringExtensionsTest
     {
@@ -81,6 +83,60 @@ namespace Rene.Utils.Core.UnitTest.Extensions
 
             var result_1 = StringExtensions.ToInt(null);
             Assert.Equal(0, result_1);
+        }
+
+
+        [Fact]
+        public void SplitTo_Should_Be_As_Spectated()
+        {
+            var input = "a,b,c";
+            var result = input.SplitTo<string>(',');
+
+            result
+                .Should()
+                .NotBeNullOrEmpty()
+                .And
+                .BeAssignableTo<IEnumerable<string>>()
+                .And
+                .ContainInOrder("a", "b", "c")
+                .And
+                .HaveCount(3)
+                ;
+        }
+
+
+        [Fact]
+        public void SplitTo_Null_String_Should_Be_As_Spectated()
+        {
+            string input = null;
+            var result = input.SplitTo<string>(',');
+
+            result
+                .Should()
+                .NotBeNull()
+                .And
+                .BeAssignableTo<IEnumerable<string>>()
+                .And
+                .BeEmpty()
+                ;
+        }
+
+
+
+        [Fact]
+        public void SplitTo_Empty_String_Should_Be_As_Spectated()
+        {
+            string input = string.Empty;
+            var result = input.SplitTo<string>(',');
+
+            result
+                .Should()
+                .NotBeNull()
+                .And
+                .BeAssignableTo<IEnumerable<string>>()
+                .And
+                .BeEmpty()
+                ;
         }
     }
 }

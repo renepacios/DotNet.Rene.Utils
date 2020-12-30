@@ -2,7 +2,7 @@
 using System.Linq;
 using Xunit;
 
-namespace Rene.Utils.Core.UnitTest.Extensions
+namespace Rene.Utils.Core.UnitTest.Extensions.Collections
 {
     public class EnumerableExtensionsTest
     {
