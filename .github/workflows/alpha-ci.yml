@@ -4,9 +4,9 @@ name: Alpha Preview Tagged
 
 on:
   push:
-    branches: [ disable ]
+    branches: [alpha]
   pull_request:
-    branches: [ disable ]
+    branches: [alpha]
   
   workflow_dispatch:
 
