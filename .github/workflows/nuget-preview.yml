@@ -1,6 +1,8 @@
 name: Upload Version Preview to NuGet 
 on:
-  push:    
+  push:
+    branches: 
+      - alpha    
     tags:
     - preview*
     - alpha*
