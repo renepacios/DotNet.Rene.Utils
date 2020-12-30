@@ -1,8 +1,13 @@
 name: Upload Version to NuGet
 on:
   push:    
-    tags:
-    - v*
+    tags: 
+      - v*
+    branches: 
+      - main
+  pull_request:
+    branches: 
+      - main    
   workflow_dispatch:
   
 jobs:
