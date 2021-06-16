@@ -97,5 +97,26 @@ namespace System
         /// <returns>Max date value between two arguments</returns>
         public static DateTime MaxCompare(this DateTime date, DateTime dateToCompare) 
             => date.Ticks > dateToCompare.Ticks ? date : dateToCompare;
+
+
+        /// <summary>
+        /// Get date of next specific day of week
+        /// </summary>
+        /// <param name="date">Date from calculate</param>
+        /// <param name="dayOfWeek">Day of week to find</param>
+        /// <returns></returns>
+        public static DateTime Next(this DateTime date, DayOfWeek dayOfWeek)
+        {
+            var currentDay = (int)date.Date.DayOfWeek;
+            var targetDay = (int) dayOfWeek;
+
+            if (currentDay >= targetDay) //if day is in next week
+                targetDay += 7;
+
+            var daysToAdd = targetDay - currentDay;
+
+            return date.AddDays(daysToAdd);
+            
+        }
     }
 }
