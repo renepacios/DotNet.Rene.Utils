@@ -28,6 +28,6 @@ jobs:
         ACTION_MAIL: mail@webrene.es
         ACTION_NAME: release       
         MD_FOLDER: temp_release_notes
-        OWNER: René Pacios
+        OWNER: renepacios
         REPO_NAME: DotNet.Rene.Utils
         SKIP_MD: README.md
