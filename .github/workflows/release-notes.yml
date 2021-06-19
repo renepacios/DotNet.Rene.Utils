@@ -26,9 +26,8 @@ jobs:
       uses: docker://decathlon/wiki-page-creator-action:latest
       env:
         ACTION_MAIL: mail@webrene.es
-        ACTION_NAME: release
-        GH_PAT: $
+        ACTION_NAME: release       
         MD_FOLDER: temp_release_notes
-        OWNER: René Pacios
+        OWNER: RenÃ© Pacios
         REPO_NAME: DotNet.Rene.Utils
         SKIP_MD: README.md
