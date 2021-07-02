@@ -17,7 +17,7 @@ jobs:
     - uses: actions/checkout@master
     - name: Create Release Notes
       uses: docker://decathlon/release-notes-generator-action:2.0.1
-      env:
+      env:     
         GITHUB_TOKEN: "${{secrets.GH_TOKEN_RELEASE_NOTES}}"
         OUTPUT_FOLDER: temp_release_notes
         USE_MILESTONE_TITLE: "true"
@@ -25,6 +25,7 @@ jobs:
     - name: Upload Release Notes to Wiki
       uses: docker://decathlon/wiki-page-creator-action:latest
       env:
+        GH_PAT: "${{secrets.GH_TOKEN_RELEASE_NOTES}}"
         ACTION_MAIL: release@users.noreply.github.com
         ACTION_NAME: release       
         MD_FOLDER: temp_release_notes
