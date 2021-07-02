@@ -25,8 +25,8 @@ jobs:
     - name: Upload Release Notes to Wiki
       uses: docker://decathlon/wiki-page-creator-action:latest
       env:
-        ACTION_MAIL: rene.pacios@webrene.es
-        ACTION_NAME: renepacios       
+        ACTION_MAIL: release@users.noreply.github.com
+        ACTION_NAME: release       
         MD_FOLDER: temp_release_notes
         OWNER: renepacios
         REPO_NAME: DotNet.Rene.Utils
