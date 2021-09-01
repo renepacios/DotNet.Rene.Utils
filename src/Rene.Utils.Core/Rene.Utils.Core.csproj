@@ -7,9 +7,9 @@
         <Product>DotNet Rene.Utils</Product>
         <Description>Rene.Utils is a set of useful utilities and extensions of recurrent usage</Description>
         <Copyright>Copyright 2018</Copyright>
-        <LicenseUrl>https://github.com/rene15009/DotNet.Rene.Utils/blob/master/LICENSE</LicenseUrl>
-        <PackageProjectUrl>https://github.com/rene15009/DotNet.Rene.Utils/</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/rene15009/DotNet.Rene.Utils/</RepositoryUrl>
+        <LicenseUrl>https://github.com/renepacios/DotNet.Rene.Utils/blob/main/LICENSE</LicenseUrl>
+        <PackageProjectUrl>https://github.com/renepacios/DotNet.Rene.Utils</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/renepacios/DotNet.Rene.Utils</RepositoryUrl>
         <PackageTags>Utils  .NET Standard DotNetCore</PackageTags>
         <NeutralLanguage>en</NeutralLanguage>
         <!--<AssemblyVersion>$(FileVersion)</AssemblyVersion>
