@@ -24,7 +24,7 @@ Rene.Utils is a set of useful utilities and extensions of recurrent usage
 Is a small library that complements .NET with useful helpers clases. I wrote  a version of Rene.Utils with VB.NET (follies of youth) for .NET 2, 3.5,.. and mantein this version over the years. <b>This is a new project build from scratch and maintained in my freetime</b>
 
 #### Important:
-I use this project to practice, tecnicts of testing, CI/CD, manage a open source project and so on. 
+I use this project to practice, techniques of testing, CI/CD, manage a open source project and so on. 
 For this reason new features in library could take time to be avaliable in main branch. I have while write test, docs ... You can get pre-relase version from nuget or alpha branch.
 
 ## .NET Framework suport
