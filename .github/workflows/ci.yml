@@ -22,12 +22,14 @@ jobs:
         PROJECT_NAME: Rene.Utils.Core
 
 
-    name: Build Start
-    runs-on: ubuntu-latest
-
     strategy:
       matrix:
         dotnet: [ '3.1.x' ]
+        agent: ['windows-latest','ubuntu-latest','macos-latest']
+
+    name: Build Start with ${{matrix.agent}}
+    runs-on: ${{matrix.agent}}
+
 
     steps:
     - name: Set env. aux vars
