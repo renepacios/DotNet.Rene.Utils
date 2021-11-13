@@ -53,7 +53,7 @@ jobs:
       run: dotnet test $TEST_PROJECT_PATH --no-restore --verbosity normal
 
     - name: Build 
-      run: dotnet build -c $BUILD_CONFIG --no-restore $PROJECT_PATH 
+      run: dotnet build -c Release --no-restore $PROJECT_PATH 
 
     - name: dotnet pack [$PROJECT_NAME]
       run: dotnet pack $PROJECT_PATH -c $BUILD_CONFIG --include-symbols -p:SymbolPackageFormat=snupkg -o ./artifacts
