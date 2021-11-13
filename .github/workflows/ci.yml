@@ -25,7 +25,7 @@ jobs:
     strategy:
       matrix:
         dotnet: [ '3.1.x' ]
-        agent: ['windows-latest','ubuntu-latest','macos-latest']
+        agent: ['windows-2016','ubuntu-latest','macos-latest']
 
     name: Build Start with ${{matrix.agent}}
     runs-on: ${{matrix.agent}}
