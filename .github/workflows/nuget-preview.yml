@@ -42,15 +42,15 @@ jobs:
       run: dotnet restore $SOLUTION_NAME
 
     - name: Build
-      run: dotnet build  $PROJECT_PATH --configuration $BUILD_CONFIG --version-suffix $VERSION_SUFFIX --no-restore
+      run: dotnet build  $PROJECT_PATH -c ${{ env.BUILD_CONFIG }} --version-suffix ${{ env.VERSION_SUFFIX }} --no-restore
     #  run: dotnet build $SOLUTION_NAME --configuration $BUILD_CONFIG
 
     - name: Test
       run: dotnet test $TEST_PROJECT_PATH --no-restore --verbosity normal
 
     - name: dotnet pack [$PROJECT_NAME]
-      run: dotnet pack $PROJECT_PATH -c $BUILD_CONFIG --version-suffix $VERSION_SUFFIX --include-symbols -p:SymbolPackageFormat=snupkg -o ./artifacts
-
+    #  run: dotnet pack $PROJECT_PATH -c ${{ env.BUILD_CONFIG }} --version-suffix $VERSION_SUFFIX --include-source --include-symbols -p:SymbolPackageFormat=snupkg -o ./artifacts
+      run: dotnet pack $PROJECT_PATH -c ${{ env.BUILD_CONFIG }} --version-suffix ${{ env.VERSION_SUFFIX }} --include-source --include-symbols -p:SymbolPackageFormat=snupkg -o ./artifacts
 
     - name: Publish NuGet 
       run: dotnet nuget push ./artifacts/*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json --skip-duplicate

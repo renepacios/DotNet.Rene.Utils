@@ -5,6 +5,12 @@
         <FileVersion>$(VersionPrefix)</FileVersion>
         <Company>René Pacios</Company>
         <Copyright>Copyright © $(Company) - $([System.DateTime]::Now.Year)</Copyright>
+
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     </PropertyGroup>
     <!--<PropertyGroup>
     <LangVersion>8.0</LangVersion>
@@ -14,4 +20,11 @@
         <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
         <WarningsAsErrors></WarningsAsErrors>
     </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.AzureRepos.Git" Version="1.1.1" PrivateAssets="All"/>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+    </ItemGroup>
 </Project>
