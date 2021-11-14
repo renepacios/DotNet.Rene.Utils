@@ -5,6 +5,11 @@
         <FileVersion>$(Version)</FileVersion>
         <Company>René Pacios</Company>
         <Copyright>Copyright © $(Company) - $([System.DateTime]::Now.Year)</Copyright>
+
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
     </PropertyGroup>
     <!--<PropertyGroup>
     <LangVersion>8.0</LangVersion>
