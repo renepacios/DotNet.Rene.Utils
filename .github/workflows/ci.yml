@@ -22,12 +22,14 @@ jobs:
         PROJECT_NAME: Rene.Utils.Core
 
 
-    name: Build Start
-    runs-on: ubuntu-latest
-
     strategy:
       matrix:
         dotnet: [ '3.1.x' ]
+        agent: ['windows-2016','ubuntu-latest','macos-latest']
+
+    name: Build Start with ${{matrix.agent}}
+    runs-on: ${{matrix.agent}}
+
 
     steps:
     - name: Set env. aux vars
@@ -51,7 +53,7 @@ jobs:
       run: dotnet test $TEST_PROJECT_PATH --no-restore --verbosity normal
 
     - name: Build 
-      run: dotnet build $PROJECT_PATH --configuration $BUILD_CONFIG --no-restore 
+      run: dotnet build -c ${{ env.BUILD_CONFIG }} --no-restore $PROJECT_PATH 
 
     - name: dotnet pack [$PROJECT_NAME]
-      run: dotnet pack $PROJECT_PATH -c $BUILD_CONFIG --include-symbols -p:SymbolPackageFormat=snupkg -o ./artifacts
+      run: dotnet pack $PROJECT_PATH -c ${{ env.BUILD_CONFIG }} --include-symbols -p:SymbolPackageFormat=snupkg -o ./artifacts

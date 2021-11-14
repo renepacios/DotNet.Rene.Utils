@@ -1,8 +1,8 @@
 ﻿<Project>
     <Import Project="dependencies.props" />
     <PropertyGroup>
-        <VersionPrefix>0.4.0</VersionPrefix>
-        <FileVersion>$(Version)</FileVersion>
+        <VersionPrefix>0.4.0.1</VersionPrefix>
+        <FileVersion>$(VersionPrefix)</FileVersion>
         <Company>René Pacios</Company>
         <Copyright>Copyright © $(Company) - $([System.DateTime]::Now.Year)</Copyright>
     </PropertyGroup>

@@ -1,0 +1,32 @@
+# Trigger the workflow on milestone events
+on:
+  milestone:
+    types: [closed]
+  workflow_dispatch:
+    inputs:
+      milestoneId:
+        description: 'Milestone ID'     
+        required: true
+        default: '1'
+
+name: Milestone Closure
+jobs:
+  create-release-notes:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2.3.4
+    - name: Create Release Notes
+      uses: docker://decathlon/release-notes-generator-action:2.0.0    
+      #uses: Decathlon/wiki-page-creator-action@v2.0.0
+
+      env:     
+        GITHUB_TOKEN: "${{secrets.GH_TOKEN_RELEASE_NOTES}}"
+        OUTPUT_FOLDER: temp_release_notes
+        USE_MILESTONE_TITLE: "true"
+        GH_PAT: "${{secrets.GH_TOKEN_RELEASE_NOTES}}"
+        ACTION_MAIL: release@users.noreply.github.com
+        ACTION_NAME: renepacios       
+        MD_FOLDER: temp_release_notes
+        OWNER: renepacios
+        REPO_NAME: DotNet.Rene.Utils
+        SKIP_MD: README.md
