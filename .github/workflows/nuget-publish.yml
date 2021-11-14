@@ -1,8 +1,13 @@
 name: Upload Version to NuGet
 on:
   push:    
-    tags:
-    - v*
+    tags: 
+      - v*
+    branches: 
+      - main
+  pull_request:
+    branches: 
+      - main    
   workflow_dispatch:
   
 jobs:
@@ -38,7 +43,7 @@ jobs:
       run: dotnet restore $SOLUTION_NAME
 
     - name: Build
-      run: dotnet build  $PROJECT_PATH --configuration $BUILD_CONFIG --no-restore
+      run: dotnet build  $PROJECT_PATH -c ${{ env.BUILD_CONFIG }} --no-restore
 
     - name: Test
       run: dotnet test $TEST_PROJECT_PATH --no-restore --verbosity normal

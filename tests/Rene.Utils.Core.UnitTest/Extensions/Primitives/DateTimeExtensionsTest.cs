@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
-namespace Rene.Utils.Core.UnitTest.Extensions
+namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
 {
+    using FluentAssertions;
+
     public class DateTimeExtensionsTest
     {
         [Fact]
@@ -39,7 +37,7 @@ namespace Rene.Utils.Core.UnitTest.Extensions
             //Test when limits is swap
             Assert.False(expected.IsBetween(expected.AddHours(-1), expected.AddHours(-2)));
             Assert.False(expected.IsBetween(expected.AddHours(2), expected.AddHours(1)));
-           
+
 
         }
 
@@ -63,6 +61,36 @@ namespace Rene.Utils.Core.UnitTest.Extensions
             Assert.Equal(expected, today.BeginningOfDay());
         }
 
+        [Fact]
+        public void Date_Next_Day_Works_As_Should()
+        {
+
+            var monday = new DateTime(2021, 5, 31);
+            var tuesday = new DateTime(2021, 6, 1);
+            var wednesday = new DateTime(2021, 6, 2);
+            var thursday = new DateTime(2021, 6, 3);
+            var friday = new DateTime(2021, 6, 4);
+            var saturday = new DateTime(2021, 6, 5);
+            var sunday = new DateTime(2021, 6, 6);
+
+            monday.Next(DayOfWeek.Monday)
+                .Should()
+                .Be(monday.AddDays(7));
+
+
+            wednesday.Next(DayOfWeek.Tuesday)
+                .Should()
+                .Be(tuesday.AddDays(7));
+
+            thursday.Next(DayOfWeek.Friday)
+                .Should()
+                .Be(friday);
+
+            sunday.Next(DayOfWeek.Monday)
+                .Should()
+                .Be(monday.AddDays(7));
+
+        }
 
     }
 }

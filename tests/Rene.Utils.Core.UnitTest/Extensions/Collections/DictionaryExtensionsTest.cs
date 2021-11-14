@@ -7,13 +7,13 @@
  *
  */
 
-namespace Rene.Utils.Core.UnitTest.Extensions
-{
-    using System.Linq;
-    using FluentAssertions;
-    using System.Collections.Generic;
-    using Xunit;
+using System.Collections.Generic;
+using System.Linq;
+using FluentAssertions;
+using Xunit;
 
+namespace Rene.Utils.Core.UnitTest.Extensions.Collections
+{
     public class DictionaryExtensionsTest
     {
         [Fact]
