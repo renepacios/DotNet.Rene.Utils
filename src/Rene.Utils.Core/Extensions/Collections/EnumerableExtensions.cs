@@ -183,6 +183,12 @@ namespace System.Collections.Generic
 
             return table;
         }
+        
+        /// <summary>
+        /// Get list item type
+        /// </summary>
+        /// <returns>Item type</returns>
+        public static Type GetItemType<T>(this IEnumerable<T> _) => typeof(T);
 
     }
 
