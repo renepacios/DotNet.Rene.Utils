@@ -33,13 +33,17 @@ to the following  conditions:
 													  (_/
 
 */
-using System.Globalization;
-using System.Linq;
-using Rene.Utils.Core.Resources;
+
 
 // ReSharper disable once CheckNamespace
 namespace System.Collections.Generic
 {
+    using Globalization;
+    using Linq;
+    using Rene.Utils.Core.Resources;
+    using ComponentModel;
+    using Data;
+
     public static class EnumerableExtensions
     {
         /// <summary>
@@ -139,6 +143,53 @@ namespace System.Collections.Generic
         /// <returns> true if the source sequence contains any elements; otherwise, false.</returns>
         public static IEnumerable<(T item, int index)> AsEnumerableWithIndex<T>(this IEnumerable<T> source)
             => source?.Select((item, index) => (item, index));
+
+
+        /// <summary>
+        /// Create data table from object collection
+        /// </summary>
+        /// <param name="data">Data collection to populate dataTable</param>
+        /// <param name="tableName">Optional table name. Item type is default value</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static DataTable ToDataTable<T>(this IEnumerable<T> data, string tableName = "")
+        {
+            if (data == null) throw new ArgumentNullException(nameof(data));
+
+            PropertyDescriptorCollection props = TypeDescriptor.GetProperties(typeof(T));
+
+            DataTable table = new DataTable();
+
+            table.TableName = !string.IsNullOrEmpty(tableName)
+                ? tableName
+                : typeof(T).Name;
+
+            for (var i = 0; i < props.Count; i++)
+            {
+                PropertyDescriptor prop = props[i];
+                table.Columns.Add(prop.Name, prop.PropertyType);
+            }
+
+            var values = new object[props.Count];
+
+            foreach (T item in data)
+            {
+                for (var i = 0; i < values.Length; i++)
+                {
+                    values[i] = props[i].GetValue(item);
+                }
+                table.Rows.Add(values);
+            }
+
+            return table;
+        }
+        
+        /// <summary>
+        /// Get list item type
+        /// </summary>
+        /// <returns>Item type</returns>
+        public static Type GetItemType<T>(this IEnumerable<T> _) => typeof(T);
+
     }
 
 }
