@@ -26,9 +26,11 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Collections
 
             dic.AddIfNotExist(k, v);
 
-            Assert.True(dic.ContainsKey(k));
-            Assert.Equal(dic[k], v);
-            Assert.Single(dic);
+            dic.Should()
+                .HaveCount(1)
+                .And.ContainKey(k)
+                .And.Subject[k].Should().Be(v)
+                ;
         }
 
         [Fact]
@@ -43,17 +45,22 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Collections
 
             dic.AddIfNotExist(k, v2);
 
-            Assert.True(dic.ContainsKey(k));
-            Assert.NotEqual(dic[k], v2);
-            Assert.Equal(dic[k], v);
-            Assert.Single(dic);
+            dic.Should()
+                .HaveCount(1)
+                .And.ContainKey(k)
+                .And.Subject[k].Should().Be(v)
+                ;
+            dic[k].Should().NotBe(v2);
+         
 
             dic.AddIfNotExist(k, v2, true);
 
-            Assert.True(dic.ContainsKey(k));
-            Assert.NotEqual(dic[k], v);
-            Assert.Equal(dic[k], v2);
-            Assert.Single(dic);
+            dic.Should()
+                .HaveCount(1)
+                .And.ContainKey(k)
+                .And.Subject[k].Should().Be(v2)
+                ;
+            dic[k].Should().NotBe(v);
 
         }
 
