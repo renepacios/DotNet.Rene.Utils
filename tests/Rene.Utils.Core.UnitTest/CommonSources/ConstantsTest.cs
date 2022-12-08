@@ -13,16 +13,16 @@ namespace Rene.Utils.Core.UnitTest.CommonSources
         public void VOCALES_MINUSCULAS_ACENTUADAS() => Assert.Equal("áéíóú", Constants.VOCALES_MINUSCULAS_ACENTUADAS); 
 
         [Fact]
-        public void LETRAS_MAYUSCULAS() => Assert.Equal("ABCDEFGHIJKLMNñOPQRSTUVWXYZ", Constants.LETRAS_MAYUSCULAS);
+        public void LETRAS_MAYUSCULAS() => Assert.Equal("ABCDEFGHIJKLMNÑOPQRSTUVWXYZ", Constants.LETRAS_MAYUSCULAS);
 
         [Fact]
         public void LETRAS_MINUSCULAS() => Assert.Equal("abcdefghijklmnñopqrstuvwxyz", Constants.LETRAS_MINUSCULAS);
         [Fact]
-        public void LETRAS_MAYUSCULAS_INCLUYEACENTOS() => Assert.Equal("ABCDEFGHIJKLMNñOPQRSTUVWXYZÁÉÍÓÚ", Constants.LETRAS_MAYUSCULAS_INCLUYEACENTOS); 
+        public void LETRAS_MAYUSCULAS_INCLUYEACENTOS() => Assert.Equal("ABCDEFGHIJKLMNÑOPQRSTUVWXYZÁÉÍÓÚ", Constants.LETRAS_MAYUSCULAS_INCLUYEACENTOS); 
         [Fact]
         public void LETRAS_MINUSCULAS_INCLUYEACENTOS() => Assert.Equal("abcdefghijklmnñopqrstuvwxyzáéíóú", Constants.LETRAS_MINUSCULAS_INCLUYEACENTOS);
         [Fact]
-        public void LETRAS() => Assert.Equal("ABCDEFGHIJKLMNñOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz", Constants.LETRAS);
+        public void LETRAS() => Assert.Equal("ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz", Constants.LETRAS);
         [Fact]
         public void NUMEROS() => Assert.Equal("0123456789", Constants.NUMEROS);
     }
