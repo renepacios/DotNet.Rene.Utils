@@ -17,8 +17,8 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <VersionPrefix>$(VersionPrefix)</VersionPrefix>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-        <Version>0.4.0.2</Version>
-        <FileVersion>0.4.0.2</FileVersion>
+        <Version>$(Version)</Version>
+        <FileVersion>$(FileVersion)</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
