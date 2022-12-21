@@ -41,7 +41,7 @@ DotNet Rene Utils is built using .net Standard 2.1 and supports the `4.0+ .NET F
    You can open the `.csproj` file to see the added reference:
     ```xml
    <ItemGroup>
-        <PackageReference Include="Rene.Utils.Core" Version="0.3.1" />
+        <PackageReference Include="Rene.Utils.Core" Version="0.5.0" />
    </ItemGroup>
     ```
 ####  -> Install a specific version of a package
