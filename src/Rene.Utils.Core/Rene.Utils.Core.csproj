@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>$(NetStandardTargetVersion)</TargetFramework>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <Authors>René Pacios</Authors>
         <Company>www.WebRene.es</Company>
         <Product>DotNet Rene.Utils</Product>
