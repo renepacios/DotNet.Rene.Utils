@@ -1,12 +1,17 @@
-﻿using System;
+﻿using FluentAssertions;
+using System;
 using System.Collections.Generic;
-using FluentAssertions;
 using Xunit;
 
 namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
 {
+    using Common.Types;
+    using Resources;
+
     public class StringExtensionsTest
     {
+        #region Base64
+
         [Fact]
         public void FromBase64_Convert()
         {
@@ -28,6 +33,10 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
 
             Assert.Equal(expected, result);
         }
+
+#endregion
+
+        #region ToGuid
 
         [Fact]
         public void ToGuid_Convert()
@@ -54,7 +63,10 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
             Assert.Equal($"{strGuid} is not a valid GUID", ex.Message);
             Assert.Equal(expected, strGuid);
         }
-
+        
+        #endregion ToGuid
+        
+        #region ToInt
         [Fact]
         public void ToInt_DefaultValue_Must_Be_Zero()
         {
@@ -85,7 +97,9 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
             Assert.Equal(0, result_1);
         }
 
+        #endregion ToInt
 
+        #region SplitTo
         [Fact]
         public void SplitTo_Should_Be_As_Spectated()
         {
@@ -138,5 +152,89 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
                 .BeEmpty()
                 ;
         }
+
+        #endregion SplitTo
+
+        #region ToEnum
+
+        [Fact]
+        public void ToEnum_ValidString_Should_Be_As_Spectated()
+        {
+            string input = "One";
+
+            var result = input.ToEnum<EnumSample>();
+
+            result.Should()
+                .BeAssignableTo<EnumSample>()
+                .And.Be(EnumSample.One);
+
+
+        }
+
+        [Fact]
+        public void ToEnum_ValidString_IgnoreCase_Should_Be_As_Spectated()
+        {
+
+
+            "ONE".ToEnum<EnumSample>()
+
+            .Should()
+                .BeAssignableTo<EnumSample>()
+                .And.Be(EnumSample.One);
+
+
+
+            "one".ToEnum<EnumSample>()
+
+           .Should()
+               .BeAssignableTo<EnumSample>()
+               .And.Be(EnumSample.One);
+
+
+
+            "oNe".ToEnum<EnumSample>()
+
+                .Should()
+                .BeAssignableTo<EnumSample>()
+                .And.Be(EnumSample.One);
+
+        }
+
+
+        [Fact]
+        public void ToEnum_InvalidString_Should_Be_As_Spectated()
+        {
+            string input = null;
+
+
+            //I prefer use AAA 
+
+            Action act = () => input.ToEnum<EnumSample>();
+            act.Should()
+                .Throw<FormatException>()
+                .WithMessage(ExceptionMessages.StringNullArgumentFormat);
+
+            "".Invoking(s => s.ToEnum<EnumSample>())
+                .Should()
+                .Throw<FormatException>()
+                .WithMessage(ExceptionMessages.StringNullArgumentFormat);
+
+        }
+
+        [Fact]
+        public void ToEnum_InvalidStringValue__Should_Be_As_Spectated()
+        {
+            string input = "Ten";
+
+
+            //I prefer use AAA 
+
+            Action act = () => input.ToEnum<EnumSample>();
+            act.Should()
+                .Throw<ArgumentException>();
+
+        }
+
+        #endregion ToEnum
     }
 }
