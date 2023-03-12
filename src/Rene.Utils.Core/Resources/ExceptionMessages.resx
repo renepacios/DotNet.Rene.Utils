@@ -124,4 +124,7 @@
   <data name="NullReferenceMessage" xml:space="preserve">
     <value>Null reference exception</value>
   </data>
+  <data name="StringNullArgumentFormat" xml:space="preserve">
+    <value>Input string can not be empty or null</value>
+  </data>
 </root>
