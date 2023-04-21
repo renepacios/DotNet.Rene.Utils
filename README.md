@@ -61,13 +61,25 @@ PM> Install-Package Rene.Utils.Core
 #### Release Notes
  Coming soon
 
-##### License
-`   `DotNet Rene Utils is licensed under The MIT License (MIT), check the [LICENSE](https://github.com/rene15009/DotNet.Rene.Utils/blob/master/LICENSE) file for details.
+
 
 ##### Version
 ![Nuget](https://img.shields.io/nuget/v/Rene.Utils.Core?color=white&label=&style=for-the-badge)
 
-##### Development
-`   `C# 
 
+##### Development
+` `C# 
+
+ ## Acknowledgements
+
+* [XUnit](https://xunit.github.io/)
+* [Fluent Assertions](http://www.fluentassertions.com/)
+* [Mikael Koskinen](https://mikaelkoskinen.net/) 
+
+## Code of conduct
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+
+
+##### License
+`   `DotNet Rene Utils is licensed under The MIT License (MIT), check the [LICENSE](https://github.com/rene15009/DotNet.Rene.Utils/blob/master/LICENSE) file for details.
 
