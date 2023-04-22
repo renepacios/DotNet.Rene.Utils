@@ -2,6 +2,7 @@
 namespace Rene.Utils.Core.UnitTest.CommonSources
 {
     using Core.CommonSources;
+    using FluentAssertions;
     using Xunit;
 
     public class ConstantsTest
@@ -25,5 +26,8 @@ namespace Rene.Utils.Core.UnitTest.CommonSources
         public void LETRAS() => Assert.Equal("ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz", Constants.LETRAS);
         [Fact]
         public void NUMEROS() => Assert.Equal("0123456789", Constants.NUMEROS);
+
+        [Fact]
+        public void BASE64_CARS() => Constants.BASE64_CARS_PERMITIDOS.Should().Be("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
     }
 }
