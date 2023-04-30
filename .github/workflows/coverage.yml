@@ -1,0 +1,42 @@
+name: Code Coverage
+
+
+on:
+  push:
+      branches:
+        - develop  
+        - release/*
+        - feature/*
+        - fix/*
+      paths-ignore:
+      - '**/README.md'
+      - '**/LICENSE'
+  workflow_dispatch: #to test
+
+
+
+jobs:
+  build:
+    env:
+        BUILD_CONFIG: Release
+        PROJECT_NAME: Rene.Utils.Core
+
+
+    strategy:
+      matrix:
+        dotnet: [ '3.1.x' ]
+        agent: ['windows-2019','ubuntu-latest','macos-latest']
+
+    name: Build Start with ${{matrix.agent}}
+    runs-on: ${{matrix.agent}}
+
+
+    steps:
+    - name: Set env. aux vars
+      run: |
+        echo "SOLUTION_NAME=${PROJECT_NAME}.sln">> $GITHUB_ENV
+        echo "TEST_PROJECT_PATH=tests/${PROJECT_NAME}.UnitTest/${PROJECT_NAME}.UnitTest.csproj" >> $GITHUB_ENV
+        echo "PROJECT_PATH=src/${PROJECT_NAME}/${PROJECT_NAME}.csproj" >> $GITHUB_ENV
+        
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v3
