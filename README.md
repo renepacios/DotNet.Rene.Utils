@@ -44,7 +44,7 @@ DotNet Rene Utils is built using .net Standard 2.1 and supports the `4.0+ .NET F
         <PackageReference Include="Rene.Utils.Core" Version="0.5.0" />
    </ItemGroup>
     ```
-####  -> Install a specific version of a package
+#### Install a specific version
 If the version is not specified, NuGet installs the latest version of the package. You can also use the [dotnet add package](/dotnet/core/tools/dotnet-add-package?tabs=netcore2x) command to install a specific version of a Nuget package:
 ```dotnetcli
 dotnet add package Rene.Utils.Core --version 0.3.1-preview-16
