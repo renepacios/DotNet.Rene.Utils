@@ -1,21 +1,22 @@
 ﻿<Project>
-    <Import Project="dependencies.props" />
-    <PropertyGroup>
-        <VersionPrefix>1.2.0.0</VersionPrefix>
-        <FileVersion>$(VersionPrefix)</FileVersion>
-        <Company>René Pacios</Company>
-        <Copyright>Copyright © $(Company) - $([System.DateTime]::Now.Year)</Copyright>
+  <Import Project="dependencies.props" />
+  <PropertyGroup>
+    <VersionPrefix>0</VersionPrefix>
+    <Version>$(VersionPrefix).6.1.0</Version>
+    <FileVersion>$(Version)</FileVersion>
+    <Company>René Pacios</Company>
+    <Copyright>Copyright © $(Company) - $([System.DateTime]::Now.Year)</Copyright>
 
-      
-    </PropertyGroup>
-    <!--<PropertyGroup>
+
+  </PropertyGroup>
+  <!--<PropertyGroup>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>-->
 
-    <PropertyGroup>
-        <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
-        <WarningsAsErrors></WarningsAsErrors>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <WarningsAsErrors></WarningsAsErrors>
+  </PropertyGroup>
 
-    
+
 </Project>

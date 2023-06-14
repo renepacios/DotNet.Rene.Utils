@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>$(NetCoreTargetVersion)</TargetFramework>
-
+    <Version>$(Version)</Version>
+    <FileVersion>$(FileVersion)</FileVersion>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
