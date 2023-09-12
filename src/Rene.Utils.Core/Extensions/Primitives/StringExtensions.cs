@@ -87,6 +87,33 @@ namespace System
         }
 
         /// <summary>
+        ///     Converts the string representation of a GUID to the equivalent System.Guid structure or Empty Guid if it's not possible.
+        /// </summary>
+        /// <param name="s">The String GUID to convert</param>
+        /// <returns>
+        ///     A  valid System.Guid.
+        /// </returns>
+        public static Guid ToGuidOrDefault(this string s)
+        {
+            return !Guid.TryParse(s, out var g) 
+                ? Guid.Empty 
+                : g;
+        }
+
+        /// <summary>
+        ///     Converts the string representation of a GUID to the equivalent System.Guid structure or Empty Guid if it's not possible.
+        /// </summary>
+        /// <param name="s">The String GUID to convert</param>
+        /// <param name="defaultValue">Return value when conversion it's not possible</param>
+        /// <returns>
+        ///     A  valid System.Guid.
+        /// </returns>
+        public static Guid ToGuidOrDefault(this string s,Guid defaultValue) =>
+            Guid.TryParse(s, out var g) 
+                ? g 
+                : defaultValue;
+
+        /// <summary>
         ///     Converts the string representation of a number to its 32-bit signed integer equivalent.
         /// </summary>
         /// <param name="s">A string containing a number to convert</param>
