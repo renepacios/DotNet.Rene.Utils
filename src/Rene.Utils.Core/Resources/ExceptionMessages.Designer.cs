@@ -86,5 +86,14 @@ namespace Rene.Utils.Core.Resources {
                 return ResourceManager.GetString("NullReferenceMessage", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input string can not be empty or null.
+        /// </summary>
+        public static string StringNullArgumentFormat {
+            get {
+                return ResourceManager.GetString("StringNullArgumentFormat", resourceCulture);
+            }
+        }
     }
 }

@@ -40,6 +40,8 @@ using System.Text;
 // ReSharper disable once CheckNamespace
 namespace System
 {
+    using Rene.Utils.Core.Resources;
+
     public static class StringExtensions
     {
         #region Base 64
@@ -155,6 +157,22 @@ namespace System
                 yield return (T)Convert.ChangeType(e, typeof(T), CultureInfo.InvariantCulture);
         }
 
+
+        /// <summary>
+        /// Returns an enum object from string value representation
+        /// </summary>
+        /// <typeparam name="T">Type of enum</typeparam>
+        /// <param name="enumValue">String value</param>
+        /// <returns>Enum object</returns>
+        /// <exception cref="FormatException">Check if string value is well format</exception>
+        /// <exception cref="ArgumentException">Check if string value is one of enum allow values</exception>
+        public static T ToEnum<T>(this string enumValue)
+        {
+            if (string.IsNullOrEmpty(enumValue)) throw new FormatException(ExceptionMessages.StringNullArgumentFormat);
+          
+            return (T)System.Enum.Parse(typeof(T), enumValue, true);
+
+        }
 
         #endregion
     }
