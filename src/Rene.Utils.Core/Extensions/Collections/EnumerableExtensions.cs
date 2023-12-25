@@ -167,7 +167,9 @@ namespace System.Collections.Generic
             for (var i = 0; i < props.Count; i++)
             {
                 PropertyDescriptor prop = props[i];
-                table.Columns.Add(prop.Name, prop.PropertyType);
+               var  desc= prop.Attributes.OfType<DescriptionAttribute>().FirstOrDefault();
+               var columnName = desc?.Description ?? prop.Name;
+               table.Columns.Add(columnName, prop.PropertyType);
             }
 
             var values = new object[props.Count];

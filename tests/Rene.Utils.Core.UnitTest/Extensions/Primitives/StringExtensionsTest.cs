@@ -63,10 +63,45 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
             Assert.Equal($"{strGuid} is not a valid GUID", ex.Message);
             Assert.Equal(expected, strGuid);
         }
-        
-        #endregion ToGuid
-        
-        #region ToInt
+
+
+        [Fact]
+        public void ToGuidOrDefault_Convert()
+        {
+            var strGuid = "DDADCD3F-A494-474C-87AA-D66D882879A0";
+            // {DDADCD3F-A494-474C-87AA-D66D882879A0}
+            var expected = new Guid(0xddadcd3f, 0xa494, 0x474c, 0x87, 0xaa, 0xd6, 0x6d, 0x88, 0x28, 0x79, 0xa0);
+
+            var result = strGuid.ToGuidOrDefault();
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void ToGuidOrDefault_BadFormatGuid()
+        {
+            var strGuid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+            Guid expected=Guid.Empty;
+
+            var result = strGuid.ToGuidOrDefault();
+
+            result.Should().Be(expected);
+        }
+
+        [Fact]
+        public void ToGuidOrDefaultWithDefaultValue_BadFormatGuid()
+        {
+            var strGuid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+            
+            Guid defaultValue = Guid.Parse("032aafff-dcc9-4d27-86bc-d8a7de04114b");
+            Guid expected =defaultValue;
+
+            var result = strGuid.ToGuidOrDefault(defaultValue);
+
+            result.Should().Be(expected);
+
+        }
+
+
         [Fact]
         public void ToInt_DefaultValue_Must_Be_Zero()
         {

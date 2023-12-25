@@ -61,6 +61,15 @@ namespace Rene.Utils.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The specified key does not have a valid size.
+        /// </summary>
+        public static string KeySizeOutMessage {
+            get {
+                return ResourceManager.GetString("KeySizeOutMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Null reference to {0}.
         /// </summary>
         public static string NulleReferenceExceptioX0 {

@@ -1,5 +1,7 @@
 ﻿
 
+using System.ComponentModel;
+
 namespace Rene.Utils.Core.UnitTest.Extensions.Collections
 {
 
@@ -10,10 +12,15 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Collections
 
     public class EnumerableExtensionsToDataTableTest
     {
+        private const string COLUMN_DESCRIPTION = "Test Colunm";
+
         private class TestClass
         {
-            public int Colum1 { get; set; }
-            public string Colum2 { get; set; }
+            public int Column1 { get; set; }
+            [Description(COLUMN_DESCRIPTION)]
+            public string Column2 { get; set; }
+
+            
         }
 
 
@@ -53,24 +60,24 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Collections
             dt.Columns.Count.Should().Be(2);
             dt.Rows.Count.Should().Be(rowscount);
 
-            dt.Columns[0].ColumnName.Should().Be(nameof(TestClass.Colum1));
-            dt.Columns[1].ColumnName.Should().Be(nameof(TestClass.Colum2));
+            dt.Columns[0].ColumnName.Should().Be(nameof(TestClass.Column1));
+            dt.Columns[1].ColumnName.Should().Be(COLUMN_DESCRIPTION);
 
            
             dt.Rows[0][0].Should()
                 .BeAssignableTo<int>()
-                .And.Be(data.First().Colum1);
+                .And.Be(data.First().Column1);
 
             dt.Rows[0][1].Should()
-                .BeAssignableTo(data.First().Colum2.GetType())
-                .And.Be(data.First().Colum2);
+                .BeAssignableTo(data.First().Column2.GetType())
+                .And.Be(data.First().Column2);
 
         }
 
 
         private IEnumerable<TestClass> GetDataToTest(int count = 5)
             => Enumerable.Range(1, count)
-                .Select(s => new TestClass() { Colum1 = s, Colum2 = $"Col-{s}" });
+                .Select(s => new TestClass() { Column1 = s, Column2 = $"Col-{s}" });
 
 
     }

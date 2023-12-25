@@ -46,5 +46,7 @@ namespace Rene.Utils.Core.CommonSources
         public const string LETRAS_MINUSCULAS_INCLUYEACENTOS = LETRAS_MINUSCULAS + VOCALES_MINUSCULAS_ACENTUADAS;
         public const string LETRAS = LETRAS_MAYUSCULAS + LETRAS_MINUSCULAS;
         public const string NUMEROS = "0123456789";
+
+        public const string BASE64_CARS_PERMITIDOS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     }
 }
