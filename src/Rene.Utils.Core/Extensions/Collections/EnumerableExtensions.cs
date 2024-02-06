@@ -43,6 +43,7 @@ namespace System.Collections.Generic
     using Rene.Utils.Core.Resources;
     using ComponentModel;
     using Data;
+    using Threading.Tasks;
 
     public static class EnumerableExtensions
     {
@@ -65,6 +66,24 @@ namespace System.Collections.Generic
             }
         }
 
+        /// <summary>
+        ///     Extend internal ForEach Method add item index to where callback
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="action"></param>
+        /// <exception cref="NullReferenceException"></exception>
+        public static async Task ForEachAsync<T>(this IEnumerable<T> source, Func<T, Task> action)
+        {
+            if (source == null) throw new NullReferenceException(string.Format(CultureInfo.CurrentCulture, ExceptionMessages.NulleReferenceExceptioX0, nameof(source)));
+            if (action == null) throw new ArgumentNullException(string.Format(CultureInfo.CurrentCulture, ExceptionMessages.NulleReferenceExceptioX0, nameof(action)));
+            
+            foreach (var item in source)
+            {
+                await action(item);
+
+            }
+        }
 
         /// <summary>
         ///     Get ListItems after apply where to each item
