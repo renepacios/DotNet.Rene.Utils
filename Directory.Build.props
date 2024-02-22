@@ -2,7 +2,7 @@
   <Import Project="dependencies.props" />
   <PropertyGroup>
     <VersionPrefix>1</VersionPrefix>
-    <Version>$(VersionPrefix).2.1</Version>
+    <Version>$(VersionPrefix).2.2</Version>
     <FileVersion>$(Version)</FileVersion>
     <Company>René Pacios</Company>
     <Copyright>Copyright © $(Company) - $([System.DateTime]::Now.Year)</Copyright>
