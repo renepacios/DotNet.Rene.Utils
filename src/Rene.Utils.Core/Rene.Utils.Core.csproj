@@ -20,10 +20,23 @@
     <Version>$(Version)</Version>
     <FileVersion>$(FileVersion)</FileVersion>
     <LangVersion>$(LangVersion)</LangVersion>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
   
   <ItemGroup>
-    <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
+    <SourceRoot Include="$(MSBuildThisFileDirectory)/" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(SourceLinkGithub)">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
