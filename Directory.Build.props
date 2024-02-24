@@ -10,7 +10,9 @@
   <!--<PropertyGroup>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>-->
-
+<PropertyGroup>
+<SourceLinkGithub>8.0.0</SourceLinkGithub>
+</PropertyGroup>
   <PropertyGroup>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <WarningsAsErrors></WarningsAsErrors>
