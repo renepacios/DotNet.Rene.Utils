@@ -2,7 +2,7 @@
   <Import Project="dependencies.props" />
   <PropertyGroup>
     <VersionPrefix>1</VersionPrefix>
-    <Version>$(VersionPrefix).2.2</Version>
+    <Version>$(VersionPrefix).2.3</Version>
     <FileVersion>$(Version)</FileVersion>
     <Company>René Pacios</Company>
     <Copyright>Copyright © $(Company) - $([System.DateTime]::Now.Year)</Copyright>
@@ -16,5 +16,14 @@
     <WarningsAsErrors></WarningsAsErrors>
   </PropertyGroup>
 
-
+<PropertyGroup ><!-- Condition="'$(GITHUB_ACTIONS)' == 'true'" -->
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+</PropertyGroup>
+<PropertyGroup>
+    <TargetFrameworkMonikerAssemblyAttributesPath>$([System.IO.Path]::Combine('$(IntermediateOutputPath)','$(TargetFrameworkMoniker).AssemblyAttributes$(DefaultLanguageSourceExtension)'))</TargetFrameworkMonikerAssemblyAttributesPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- https://github.com/dotnet/sourcelink/issues/572 -->
+    <EmbeddedFiles Include="$(GeneratedAssemblyInfoFile)"/>
+  </ItemGroup>
 </Project>
