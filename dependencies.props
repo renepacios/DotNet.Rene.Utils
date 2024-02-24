@@ -9,6 +9,7 @@
     <PropertyGroup Label="Package Versions">
         <FluentAssertions>5.10.3</FluentAssertions>
         <Xunit>2.4.1</Xunit>
+      <SourceLinkGithub>8.0.0</SourceLinkGithub>
     </PropertyGroup>
 
 </Project>

@@ -7,25 +7,43 @@
     <Company>René Pacios</Company>
     <Copyright>Copyright © $(Company) - $([System.DateTime]::Now.Year)</Copyright>
   </PropertyGroup>
-  <!--<PropertyGroup>
-    <LangVersion>8.0</LangVersion>
-  </PropertyGroup>-->
-<PropertyGroup>
-<SourceLinkGithub>8.0.0</SourceLinkGithub>
-</PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>11.0</LangVersion>
+  </PropertyGroup>
   <PropertyGroup>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <WarningsAsErrors></WarningsAsErrors>
   </PropertyGroup>
-
-<PropertyGroup ><!-- Condition="'$(GITHUB_ACTIONS)' == 'true'" -->
-    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-</PropertyGroup>
-<PropertyGroup>
-    <TargetFrameworkMonikerAssemblyAttributesPath>$([System.IO.Path]::Combine('$(IntermediateOutputPath)','$(TargetFrameworkMoniker).AssemblyAttributes$(DefaultLanguageSourceExtension)'))</TargetFrameworkMonikerAssemblyAttributesPath>
+  <!--<PropertyGroup>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>-->
+  <PropertyGroup>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <DebugType>embedded</DebugType>
+    <!-- Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+
+  <PropertyGroup >
+    <!-- Condition="'$(GITHUB_ACTIONS)' == 'true'" -->
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(SourceLinkGithub)">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <!--<PropertyGroup>
+    <TargetFrameworkMonikerAssemblyAttributesPath>$([System.IO.Path]::Combine('$(IntermediateOutputPath)','$(TargetFrameworkMoniker).AssemblyAttributes$(DefaultLanguageSourceExtension)'))</TargetFrameworkMonikerAssemblyAttributesPath>
+  </PropertyGroup>-->
   <ItemGroup>
     <!-- https://github.com/dotnet/sourcelink/issues/572 -->
-    <EmbeddedFiles Include="$(GeneratedAssemblyInfoFile)"/>
+    <!--<EmbeddedFiles Include="$(GeneratedAssemblyInfoFile)"/>-->
   </ItemGroup>
 </Project>
