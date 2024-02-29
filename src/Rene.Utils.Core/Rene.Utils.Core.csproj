@@ -1,48 +1,68 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
-        <Authors>René Pacios</Authors>
-        <Company>www.WebRene.es</Company>
-        <Product>DotNet Rene.Utils</Product>
-        <Description>Rene.Utils is a set of useful utilities and extensions of recurrent usage</Description>
-        <Copyright>Copyright 2018</Copyright>
-        <LicenseUrl>https://github.com/renepacios/DotNet.Rene.Utils/blob/main/LICENSE</LicenseUrl>
-        <PackageProjectUrl>https://github.com/renepacios/DotNet.Rene.Utils</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/renepacios/DotNet.Rene.Utils</RepositoryUrl>
-        <PackageTags>Utils  .NET Standard DotNetCore</PackageTags>
-        <NeutralLanguage>en</NeutralLanguage>
-        <!--<AssemblyVersion>$(FileVersion)</AssemblyVersion>
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>René Pacios</Authors>
+    <Company>www.WebRene.es</Company>
+    <Product>DotNet Rene.Utils</Product>
+    <Description>Rene.Utils is a set of useful utilities and extensions of recurrent usage</Description>
+    <Copyright>Copyright 2018</Copyright>
+    <LicenseUrl>https://github.com/renepacios/DotNet.Rene.Utils/blob/main/LICENSE</LicenseUrl>
+    <PackageProjectUrl>https://github.com/renepacios/DotNet.Rene.Utils</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/renepacios/DotNet.Rene.Utils</RepositoryUrl>
+    <PackageTags>Utils  .NET Standard DotNetCore</PackageTags>
+    <NeutralLanguage>en</NeutralLanguage>
+    <!--<AssemblyVersion>$(FileVersion)</AssemblyVersion>
         <FileVersion>$(FileVersion)</FileVersion>-->
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <VersionPrefix>$(VersionPrefix)</VersionPrefix>
-        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-        <Version>$(Version)</Version>
-        <FileVersion>$(FileVersion)</FileVersion>
-        <LangVersion>8</LangVersion>
-    </PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <VersionPrefix>$(VersionPrefix)</VersionPrefix>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Version>$(Version)</Version>
+    <FileVersion>$(FileVersion)</FileVersion>
+    <LangVersion>$(LangVersion)</LangVersion>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.7">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-    </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <SourceRoot Include="$(MSBuildThisFileDirectory)/" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(SourceLinkGithub)">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
 
-    <ItemGroup>
-        <Compile Update="Resources\ExceptionMessages.Designer.cs">
-            <DesignTime>True</DesignTime>
-            <AutoGen>True</AutoGen>
-            <DependentUpon>ExceptionMessages.resx</DependentUpon>
-        </Compile>
-    </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\ExceptionMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ExceptionMessages.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
 
-    <ItemGroup>
-        <EmbeddedResource Update="Resources\ExceptionMessages.resx">
-            <Generator>PublicResXFileCodeGenerator</Generator>
-            <LastGenOutput>ExceptionMessages.Designer.cs</LastGenOutput>
-        </EmbeddedResource>
-    </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\ExceptionMessages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExceptionMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
 
 </Project>
