@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
@@ -34,7 +35,7 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
             Assert.Equal(expected, result);
         }
 
-#endregion
+        #endregion
 
         #region ToGuid
 
@@ -80,7 +81,7 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
         public void ToGuidOrDefault_BadFormatGuid()
         {
             var strGuid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
-            Guid expected=Guid.Empty;
+            Guid expected = Guid.Empty;
 
             var result = strGuid.ToGuidOrDefault();
 
@@ -91,9 +92,9 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
         public void ToGuidOrDefaultWithDefaultValue_BadFormatGuid()
         {
             var strGuid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
-            
+
             Guid defaultValue = Guid.Parse("032aafff-dcc9-4d27-86bc-d8a7de04114b");
-            Guid expected =defaultValue;
+            Guid expected = defaultValue;
 
             var result = strGuid.ToGuidOrDefault(defaultValue);
 
@@ -135,6 +136,7 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
         #endregion ToInt
 
         #region SplitTo
+
         [Fact]
         public void SplitTo_Should_Be_As_Spectated()
         {
@@ -213,7 +215,7 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
 
             "ONE".ToEnum<EnumSample>()
 
-            .Should()
+                .Should()
                 .BeAssignableTo<EnumSample>()
                 .And.Be(EnumSample.One);
 
@@ -221,9 +223,9 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
 
             "one".ToEnum<EnumSample>()
 
-           .Should()
-               .BeAssignableTo<EnumSample>()
-               .And.Be(EnumSample.One);
+                .Should()
+                .BeAssignableTo<EnumSample>()
+                .And.Be(EnumSample.One);
 
 
 
@@ -271,5 +273,201 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
         }
 
         #endregion ToEnum
+
+        #region ToEnumOrDefault
+
+        [Fact]
+        public void ToEnumOrDefault_ValidString_Should_Be_As_Spectated()
+        {
+            string input = "One";
+
+            var result = input.ToEnumOrDefault<EnumSample>(EnumSample.Zero);
+
+            result.Should()
+                .BeAssignableTo<EnumSample>()
+                .And.Be(EnumSample.One);
+        }
+
+        [Fact]
+        public void ToEnumOrDefault_InvalidString_Should_Be_As_Spectated()
+        {
+            string input = null;
+            var result = input.ToEnumOrDefault<EnumSample>(EnumSample.Zero);
+
+            result.Should()
+                .BeAssignableTo<EnumSample>()
+                .And.Be(EnumSample.Zero);
+        }
+
+        [Fact]
+        public void ToEnumOrDefault_InvalidStringValue_Should_Be_As_Spectated()
+        {
+            string input = "Ten";
+            var result = input.ToEnumOrDefault<EnumSample>(EnumSample.Zero);
+
+            result.Should()
+                .BeAssignableTo<EnumSample>()
+                .And.Be(EnumSample.Zero);
+        }
+
+        [Fact]
+        public void ToEnumOrDefaultWithDefaultValue_ValidString_Should_Be_As_Spectated()
+        {
+            string input = "One";
+
+            var result = input.ToEnumOrDefault(EnumSample.Zero);
+
+            result.Should()
+                .BeAssignableTo<EnumSample>()
+                .And.Be(EnumSample.One);
+        }
+
+        #endregion ToEnumOrDefault
+
+        #region ToRandomString
+
+        [Fact]
+        public void ToRandomString_Should_Be_As_Spectated()
+        {
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var length = 10;
+
+            var result = chars.ToRandomString(length);
+
+            result
+                .Should()
+                .NotBeNullOrEmpty()
+                .And
+                .BeAssignableTo<string>()
+                .And
+                .HaveLength(length)
+                .And
+                .MatchRegex(@"^[a-zA-Z0-9]{10}$")
+                ;
+        }
+
+        [Fact]
+        public void ToRandomString_Should_Have_Same_Chars()
+        {
+            var expectedChars = "ABCDEFGHIJxyz0123456789";
+            var nonExpectedChars = "KLMNOPQRSTUVWabcdfghlmnopqrstuvw";
+            var length = 10;
+
+            var result = expectedChars.ToRandomString(length);
+
+            result
+                .Should()
+                .NotBeNullOrEmpty()
+                .And
+                .BeAssignableTo<string>()
+                .And
+                .HaveLength(length)
+                .And
+                .MatchRegex(@"^[a-zA-Z0-9]{10}$")
+                .And
+                .ContainAny(expectedChars.ToCharArray().Select(s => s.ToString()))
+                .And
+                .NotContainAny(nonExpectedChars.ToCharArray().Select(s => s.ToString()))
+                ;
+        }
+
+        [Fact]
+        public void ToRandomString_RequireLength_Zero_Should_Be_As_Spectated()
+        {
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var length = 0;
+
+            var result = chars.ToRandomString(length);
+
+            result
+                .Should()
+                .BeEmpty()
+                .And
+                .BeAssignableTo<string>()
+                .And
+                .HaveLength(length)
+                .And
+                .MatchRegex(@"^[a-zA-Z0-9]{0}$")
+                ;
+        }
+
+        [Fact]
+        public void ToRandomString_RequireLength_Higher_Should_Be_As_Spectated()
+        {
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var length = chars.Length + 1;
+
+            var result = chars.ToRandomString(length);
+
+            result
+                .Should()
+                .NotBeEmpty()
+                .And
+                .BeAssignableTo<string>()
+                .And
+                .HaveLength(length)
+                .And
+                .MatchRegex(@$"^[a-zA-Z0-9]{{{length}}}$")
+                ;
+        }
+        [Fact]
+        public void ToRandomString_RequireLength_Negative_Should_Be_As_Spectated()
+        {
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var length = -1;
+
+
+            Action act = () => chars.ToRandomString(length);
+
+            act.Should()
+                .Throw<ArgumentOutOfRangeException>();
+
+        }
+
+        [Fact]
+        public void ToRandomString_RequireChars_Null_Should_Be_As_Spectated()
+        {
+            string chars = null;
+            var length = 10;
+
+            Action act = () => chars.ToRandomString(length);
+
+            act.Should()
+                .Throw<FormatException>()
+                .WithMessage(Resources.ExceptionMessages.StringNullArgumentFormat);
+        }
+        [Fact]
+        public void ToRandomString_RequireChars_Empty_Should_Be_As_Spectated()
+        {
+            string chars = string.Empty;
+            var length = 10;
+            Action act = () => chars.ToRandomString(length);
+            act.Should()
+                .Throw<FormatException>()
+                .WithMessage(Resources.ExceptionMessages.StringNullArgumentFormat);
+        }
+
+        [Fact]
+        public void ToRandomString_RequireChars_WhiteSpace_Should_Be_As_Spectated()
+        {
+            string chars = " ";
+            var length = 10;
+
+            var result = chars.ToRandomString(length);
+
+            result
+                .Should()
+                .NotBeEmpty()
+                .And
+                .BeAssignableTo<string>()
+                .And
+                .HaveLength(length)
+                .And
+                .MatchRegex(@"^^\s*$")
+                ;
+        }
+
+
+        #endregion ToRandomString
     }
 }

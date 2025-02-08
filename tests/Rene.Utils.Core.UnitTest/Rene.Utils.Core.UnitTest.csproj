@@ -5,6 +5,7 @@
     <Version>$(Version)</Version>
     <FileVersion>$(FileVersion)</FileVersion>
     <IsPackable>false</IsPackable>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
