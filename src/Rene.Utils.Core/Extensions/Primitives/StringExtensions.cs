@@ -206,6 +206,8 @@ namespace System
         /// <returns></returns>
         public static string ToRandomString(this string chars, int length)
         {
+            if (string.IsNullOrEmpty(chars)) throw new FormatException(ExceptionMessages.StringNullArgumentFormat);
+
             // var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             Random random = new();
 
