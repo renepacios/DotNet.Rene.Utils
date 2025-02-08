@@ -41,6 +41,7 @@ using System.Text;
 namespace System
 {
     using Rene.Utils.Core.Resources;
+    using System.Linq;
 
     public static class StringExtensions
     {
@@ -97,8 +98,8 @@ namespace System
         /// </returns>
         public static Guid ToGuidOrDefault(this string s)
         {
-            return !Guid.TryParse(s, out var g) 
-                ? Guid.Empty 
+            return !Guid.TryParse(s, out var g)
+                ? Guid.Empty
                 : g;
         }
 
@@ -110,9 +111,9 @@ namespace System
         /// <returns>
         ///     A  valid System.Guid.
         /// </returns>
-        public static Guid ToGuidOrDefault(this string s,Guid defaultValue) =>
-            Guid.TryParse(s, out var g) 
-                ? g 
+        public static Guid ToGuidOrDefault(this string s, Guid defaultValue) =>
+            Guid.TryParse(s, out var g)
+                ? g
                 : defaultValue;
 
         /// <summary>
@@ -169,9 +170,47 @@ namespace System
         public static T ToEnum<T>(this string enumValue)
         {
             if (string.IsNullOrEmpty(enumValue)) throw new FormatException(ExceptionMessages.StringNullArgumentFormat);
-          
+
             return (T)System.Enum.Parse(typeof(T), enumValue, true);
 
+        }
+
+        /// <summary>
+        /// Returns an enum object from string value representation or default value if it's not possible
+        /// </summary>
+        /// <typeparam name="T">Type of enum</typeparam>
+        /// <param name="enumValue">String value</param>
+        /// <returns>Enum object</returns>
+        public static T ToEnumOrDefault<T>(this string enumValue, T defaultValue)
+        {
+            if (string.IsNullOrEmpty(enumValue)) return defaultValue;
+
+            try
+            {
+                return enumValue.ToEnum<T>();
+            }
+            catch (ArgumentException)
+            {
+                return defaultValue;
+            }
+            catch (FormatException)
+            {
+                return defaultValue;
+            }
+        }
+
+        /// <summary>
+        /// Returns an enum object from string value representation or default value if it's not possible
+        /// </summary>
+        /// <param name="length"> </param>
+        /// <returns></returns>
+        public static string ToRandomString(this string chars, int length)
+        {
+            // var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            Random random = new();
+
+            return new string(Enumerable.Repeat(chars, length)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
         #endregion

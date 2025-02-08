@@ -34,7 +34,7 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
             Assert.Equal(expected, result);
         }
 
-#endregion
+        #endregion
 
         #region ToGuid
 
@@ -80,7 +80,7 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
         public void ToGuidOrDefault_BadFormatGuid()
         {
             var strGuid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
-            Guid expected=Guid.Empty;
+            Guid expected = Guid.Empty;
 
             var result = strGuid.ToGuidOrDefault();
 
@@ -91,9 +91,9 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
         public void ToGuidOrDefaultWithDefaultValue_BadFormatGuid()
         {
             var strGuid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
-            
+
             Guid defaultValue = Guid.Parse("032aafff-dcc9-4d27-86bc-d8a7de04114b");
-            Guid expected =defaultValue;
+            Guid expected = defaultValue;
 
             var result = strGuid.ToGuidOrDefault(defaultValue);
 
@@ -135,6 +135,7 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
         #endregion ToInt
 
         #region SplitTo
+
         [Fact]
         public void SplitTo_Should_Be_As_Spectated()
         {
@@ -213,7 +214,7 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
 
             "ONE".ToEnum<EnumSample>()
 
-            .Should()
+                .Should()
                 .BeAssignableTo<EnumSample>()
                 .And.Be(EnumSample.One);
 
@@ -221,9 +222,9 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
 
             "one".ToEnum<EnumSample>()
 
-           .Should()
-               .BeAssignableTo<EnumSample>()
-               .And.Be(EnumSample.One);
+                .Should()
+                .BeAssignableTo<EnumSample>()
+                .And.Be(EnumSample.One);
 
 
 
@@ -271,5 +272,56 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
         }
 
         #endregion ToEnum
+
+        #region ToEnumOrDefault
+
+        [Fact]
+        public void ToEnumOrDefault_ValidString_Should_Be_As_Spectated()
+        {
+            string input = "One";
+
+            var result = input.ToEnumOrDefault<EnumSample>(EnumSample.Zero);
+
+            result.Should()
+                .BeAssignableTo<EnumSample>()
+                .And.Be(EnumSample.One);
+        }
+
+        [Fact]
+        public void ToEnumOrDefault_InvalidString_Should_Be_As_Spectated()
+        {
+            string input = null;
+            var result = input.ToEnumOrDefault<EnumSample>(EnumSample.Zero);
+
+            result.Should()
+                .BeAssignableTo<EnumSample>()
+                .And.Be(EnumSample.Zero);
+        }
+
+        [Fact]
+        public void ToEnumOrDefault_InvalidStringValue_Should_Be_As_Spectated()
+        {
+            string input = "Ten";
+            var result = input.ToEnumOrDefault<EnumSample>(EnumSample.Zero);
+
+            result.Should()
+                .BeAssignableTo<EnumSample>()
+                .And.Be(EnumSample.Zero);
+        }
+
+        [Fact]
+        public void ToEnumOrDefaultWithDefaultValue_ValidString_Should_Be_As_Spectated()
+        {
+            string input = "One";
+
+            var result = input.ToEnumOrDefault(EnumSample.Zero);
+
+            result.Should()
+                .BeAssignableTo<EnumSample>()
+                .And.Be(EnumSample.One);
+        }
+
+        #endregion ToEnumOrDefault
+
     }
 }
