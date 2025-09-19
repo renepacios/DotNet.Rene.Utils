@@ -469,5 +469,167 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
 
 
         #endregion ToRandomString
+
+        #region ContainsAnyArray
+
+        [Fact]
+        public void ContainsAnyArray_Should_Be_As_Spectated()
+        {
+            var input = "Hello World";
+            var result = input.ContainsAny(new[] { "Hello", "Universe" });
+            result.Should().BeTrue();
+        }
+
+        [Fact]
+        public void ContainsAnyArray_Should_Be_False()
+        {
+            var input = "Hello World";
+            var result = input.ContainsAny(new[] { "Universe", "Galaxy" });
+            result.Should().BeFalse();
+        }
+
+        [Fact]
+        public void ContainsAnyArray_NullOrEmptyString_Should_Be_False()
+        {
+            string input = null;
+            var result = input.ContainsAny(new[] { "Universe", "Galaxy" });
+            result.Should().BeFalse();
+
+            input = string.Empty;
+            var result_1 = input.ContainsAny(new[] { "Universe", "Galaxy" });
+            result_1.Should().BeFalse();
+        }
+
+        [Fact]
+        public void ContainsAnyArray_NullOrEmptyArray_Should_Be_False()
+        {
+            var input = "Hello World";
+
+            Action act1 = () => input.ContainsAny(null);
+            act1.Should()
+                .Throw<ArgumentException>();
+                //.WithMessage(ExceptionMessages.ArrayNullOrEmptyArgumentFormat) // opcional: verificar el mensaje
+
+            Action act2 = () => input.ContainsAny(Array.Empty<string>());
+            act2.Should()
+                .Throw<ArgumentException>();
+                //.WithMessage(ExceptionMessages.ArrayNullOrEmptyArgumentFormat);
+        }
+
+        [Fact]
+        public void ContainsAnyArray_Both_NullOrEmpty_Should_Be_False()
+        {
+            string input = null;
+            var result = input.ContainsAny(null);
+            result.Should().BeFalse();
+            input = string.Empty;
+            var result_1 = input.ContainsAny(Array.Empty<string>());
+            result_1.Should().BeFalse();
+        }
+
+
+
+        #endregion
+
+        #region AddSpacesToSentence
+
+        public class StringExtensions_AddSpacesToSentence_Tests
+        {
+            [Theory]
+            [InlineData(null)]
+            [InlineData("")]
+            [InlineData("   ")]
+            public void Returns_Empty_For_Null_Or_Whitespace(string input)
+            {
+                // Act
+                var result = input.AddSpacesToSentence();
+
+                // Assert
+                result.Should().BeEmpty();
+            }
+
+            [Theory]
+            [InlineData("A", "A")]
+            [InlineData("a", "a")]
+            [InlineData("NoUpper", "No Upper")]
+            [InlineData("myTest", "my Test")]
+            [InlineData("MyTestVariable", "My Test Variable")]
+            [InlineData("HelloWorld!", "Hello World!")]
+            public void Inserts_Space_Before_Uppercase_When_Preceding_Is_Not_Space(string input, string expected)
+            {
+                // Act
+                var result = input.AddSpacesToSentence();
+
+                // Assert
+                result.Should().Be(expected);
+            }
+
+            [Theory]
+            [InlineData("Already Spaced", "Already Spaced")]
+            [InlineData("This  Is", "This  Is")] // conserva espacios dobles ya existentes
+            [InlineData(" LeadingSpace", " Leading Space")] // agrega espacio antes de 'S' si procede
+            public void Preserves_Existing_Spaces(string input, string expected)
+            {
+                // Act
+                var result = input.AddSpacesToSentence();
+
+                // Assert
+                result.Should().Be(expected);
+            }
+
+            [Theory]
+            [InlineData("HTMLParser", "H T M L Parser")]
+            [InlineData("JSON", "J S O N")]
+            [InlineData("XMLErrorCode", "X M L Error Code")]
+            public void Splits_Acronyms_Into_Individual_Letters_With_Spaces(string input, string expected)
+            {
+                // Act
+                var result = input.AddSpacesToSentence();
+
+                // Assert
+                result.Should().Be(expected);
+            }
+
+            [Theory]
+            [InlineData("number9Test", "number9 Test")]
+            [InlineData("End2EndTest", "End2 End Test")]
+            public void Leaves_Digits_And_NonLetters_Intact_Only_Adds_Before_Uppercase(string input, string expected)
+            {
+                // Act
+                var result = input.AddSpacesToSentence();
+
+                // Assert
+                result.Should().Be(expected);
+            }
+
+            [Fact]
+            public void Does_Not_Remove_Or_Change_Characters_Other_Than_Adding_Spaces_Before_Uppers()
+            {
+                // Arrange
+                var inputs = new[]
+                {
+                "MyTestVariable",
+                "Already Spaced",
+                "HelloWorld!",
+                "A",
+                "myTest",
+                "HTMLParser"
+            };
+
+                foreach (var input in inputs)
+                {
+                    // Act
+                    var result = input.AddSpacesToSentence();
+
+                    // Assert: si quitamos espacios, debe quedar igual que el original sin espacios
+                    result.Replace(" ", string.Empty)
+                          .Should().Be(input.Replace(" ", string.Empty),
+                              $"the function should not alter non-space characters for '{input}'");
+                }
+            }
+        }
+
+        #endregion
+
     }
 }

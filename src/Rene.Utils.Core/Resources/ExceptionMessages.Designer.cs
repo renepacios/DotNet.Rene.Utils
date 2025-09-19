@@ -61,6 +61,15 @@ namespace Rene.Utils.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Array is Null or Empty.
+        /// </summary>
+        public static string ArrayNullOrEmptyArgumentFormat {
+            get {
+                return ResourceManager.GetString("ArrayNullOrEmptyArgumentFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The specified key does not have a valid size.
         /// </summary>
         public static string KeySizeOutMessage {
