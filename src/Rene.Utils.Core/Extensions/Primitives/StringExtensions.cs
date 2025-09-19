@@ -35,6 +35,7 @@ to the following  conditions:
 */
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 
 // ReSharper disable once CheckNamespace
@@ -175,5 +176,54 @@ namespace System
         }
 
         #endregion
+
+        #region Comprobaciones
+
+
+        /// <summary>
+        /// Checks whether the string contains any of the specified substrings.
+        /// </summary>
+        /// <param name="element">The string to evaluate.</param>
+        /// <param name="substringsToCheck">The substrings to search for.</param>
+        /// <returns><c>true</c> if at least one substring is found; otherwise, <c>false</c>.</returns>
+        /// <exception cref="ArgumentException">Thrown if <paramref name="substringsToCheck"/> is null or empty.</exception>
+        public static bool ContainsAny(this string element, string[] substringsToCheck)
+        {
+            if (string.IsNullOrEmpty(element))
+                return false;
+
+            if(substringsToCheck==null || substringsToCheck.Length==0)
+                throw new ArgumentException(ExceptionMessages.ArrayNullOrEmptyArgumentFormat, nameof(substringsToCheck));
+
+            return substringsToCheck.Any(element.Contains);
+        }
+
+
+        /// <summary>
+        /// Inserts spaces into a CamelCase or PascalCase string.
+        /// Example: "MyTestVariable" → "My Test Variable".
+        /// </summary>
+        /// <param name="text">The input string.</param>
+        /// <returns>A new string with spaces inserted before capital letters.</returns>
+        public static string AddSpacesToSentence(this string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+                return string.Empty;
+
+            var sb = new StringBuilder(text.Length * 2);
+            sb.Append(text[0]);
+
+            for (int i = 1; i < text.Length; i++)
+            {
+                if (char.IsUpper(text[i]) && text[i - 1] != ' ')
+                    sb.Append(' ');
+
+                sb.Append(text[i]);
+            }
+
+            return sb.ToString();
+        }
+        #endregion
+
     }
 }
