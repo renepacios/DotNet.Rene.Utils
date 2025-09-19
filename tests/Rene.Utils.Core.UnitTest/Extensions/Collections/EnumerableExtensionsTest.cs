@@ -5,6 +5,8 @@ using Xunit;
 namespace Rene.Utils.Core.UnitTest.Extensions.Collections
 {
     using FluentAssertions;
+    using System;
+    using System.Threading.Tasks;
 
     public class EnumerableExtensionsTest
     {
@@ -92,7 +94,7 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Collections
 
             source.AnyNotNull().Should().BeFalse();
             source.Should().BeNull();
-            
+
         }
 
 
@@ -110,17 +112,46 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Collections
             {
                 tuple.item.Should().Be(source[i]);
                 tuple.index.Should().Be(i);
-                
+
                 i++;
             }
 
             source.Should().HaveCount(i);
-            
+
 
 
         }
 
 
+        [Fact]
+        public void ForEachAsync_With_Null_Instances()
+        {
+            List<int> source = null;
 
+            source
+                .Invoking(s => s.ForEachAsync(async w => await Task.CompletedTask))
+                .Should()
+                .Throw<NullReferenceException>();
+        }
+
+        [Fact]
+        public void ForEachAsync_With_Null_Action()
+        {
+            var source = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7 };
+
+            source
+                .Invoking(s => s.ForEachAsync(null))
+                .Should()
+                .Throw<ArgumentNullException>();
+        }
+
+        [Fact]
+        public void ForEachAsync_With_Action()
+        {
+            var source = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7 };
+
+            source.ForEachAsync(async w => await Task.CompletedTask);
+        }
+        
     }
 }

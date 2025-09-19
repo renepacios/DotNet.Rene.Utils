@@ -4,6 +4,7 @@
     <VersionPrefix>1</VersionPrefix>
     <Version>$(VersionPrefix).5.0</Version>
     <FileVersion>$(Version)</FileVersion>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
     <Company>René Pacios</Company>
     <Copyright>Copyright © $(Company) - $([System.DateTime]::Now.Year)</Copyright>
   </PropertyGroup>
