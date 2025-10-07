@@ -2,7 +2,7 @@
   <Import Project="dependencies.props" />
   <PropertyGroup>
     <VersionPrefix>1</VersionPrefix>
-    <Version>$(VersionPrefix).5.0</Version>
+    <Version>$(VersionPrefix).6.0</Version>
     <FileVersion>$(Version)</FileVersion>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <Company>René Pacios</Company>
