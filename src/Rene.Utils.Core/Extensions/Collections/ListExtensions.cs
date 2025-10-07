@@ -87,7 +87,7 @@ namespace System.Collections.Generic
         /// <param name="condition">Expression to check if element exist in list</param>
         /// <param name="override">[if key exist force update value]</param>
         /// <exception cref="NullReferenceException"></exception>
-        public static void AddRangeIfNotExist<T>(this IList<T> list, IEnumerable<T> values, Func<T,T, bool> condition, bool @override = false)
+        public static void AddIfNotExist<T>(this IList<T> list, IEnumerable<T> values, Func<T,T, bool> condition, bool @override = false)
         {
             if (list == null) throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, ExceptionMessages.NulleReferenceExceptioX0, nameof(list)));
             if (condition == null) throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, ExceptionMessages.NulleReferenceExceptioX0, nameof(condition)));

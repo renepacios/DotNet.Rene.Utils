@@ -68,14 +68,14 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Collections
 
         #endregion
 
-        #region AddRangeIfNotExist
+        #region AddIfNotExist
 
         [Fact]
         public void Add_Range_IfNotExist()
         {
             var list = new List<int>();
             var values = new List<int> { 1, 2, 3 };
-            list.AddRangeIfNotExist(values, (x, y) => x == y);
+            list.AddIfNotExist(values, (x, y) => x == y);
             list.Should()
                 .HaveCount(3)
                 .And.Contain(new[] { 1, 2, 3 })
@@ -88,18 +88,18 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Collections
             var list = new List<int>();
             var values = new List<int> { 1, 2, 3 };
             var values2 = new List<int> { 3, 4, 5 };
-            list.AddRangeIfNotExist(values, (x, y) => x == y);
+            list.AddIfNotExist(values, (x, y) => x == y);
             list.Should()
                 .HaveCount(3)
                 .And.Contain(new[] { 1, 2, 3 })
                 ;
-            list.AddRangeIfNotExist(values2, (x, y) => x == y);
+            list.AddIfNotExist(values2, (x, y) => x == y);
             list.Should()
                 .HaveCount(5)
                 .And.Contain(new[] { 1, 2, 3 })
                 .And.Contain(new[] { 4, 5 })
                 ;
-            list.AddRangeIfNotExist(values2, (x, y) => x == y, true);
+            list.AddIfNotExist(values2, (x, y) => x == y, true);
             list.Should()
                 .HaveCount(5)
                 .And.Contain(new[] { 3, 4, 5 })
@@ -112,7 +112,7 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Collections
         {
             List<int> list = null;
             var values = new List<int> { 1, 2, 3 };
-            var act = () => list.AddRangeIfNotExist(values, (x, y) => x == y);
+            var act = () => list.AddIfNotExist(values, (x, y) => x == y);
             act.Should().Throw<ArgumentException>();
         }
 
@@ -122,7 +122,7 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Collections
             var list = new List<int>();
             var values = new List<int> { 1, 2, 3 };
             Func<int,int, bool> condition = null;
-            var act = () => list.AddRangeIfNotExist(values, condition);
+            var act = () => list.AddIfNotExist(values, condition);
             act.Should().Throw<ArgumentException>();
         }
 
