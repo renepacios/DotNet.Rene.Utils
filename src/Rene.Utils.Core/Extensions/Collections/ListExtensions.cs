@@ -58,15 +58,15 @@ namespace System.Collections.Generic
         /// <param name="condition">Expression to check if element exist in list</param>
         /// <param name="override">[if key exist force update value]</param>
         /// <exception cref="NullReferenceException"></exception>
-        public static void AddIfNotExist<T>(this IList<T> list, T value, Func<T, bool> condition, bool @override = false)
+        public static void AddIfNotExist<T>(this IList<T> list, T value, Func<T,T, bool> condition, bool @override = false)
         {
-            if (list == null) throw new NullReferenceException(string.Format(CultureInfo.CurrentCulture, ExceptionMessages.NulleReferenceExceptioX0, nameof(list)));
-
-            if (list.Any(condition))
+            if (list == null) throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, ExceptionMessages.NulleReferenceExceptioX0, nameof(list)));
+            if (condition == null) throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, ExceptionMessages.NulleReferenceExceptioX0, nameof(condition)));
+            if (list.Any(x=> condition(value,x)))
             {
                 if (!@override) return;
 
-                var existingItem = list.First(condition);
+                var existingItem = list.First(x => condition(value, x));
                 var index = list.IndexOf(existingItem);
                 if (index >= 0)
                 {
@@ -74,9 +74,28 @@ namespace System.Collections.Generic
                 }
                 return;
             }
-            
+
             list.Add(value);
 
+        }
+
+        /// <summary>
+        /// Add elements to list if not exists item that match with condition
+        /// </summary>
+        /// <param name="list">List</param>
+        /// <param name="values">values to add </param>
+        /// <param name="condition">Expression to check if element exist in list</param>
+        /// <param name="override">[if key exist force update value]</param>
+        /// <exception cref="NullReferenceException"></exception>
+        public static void AddRangeIfNotExist<T>(this IList<T> list, IEnumerable<T> values, Func<T,T, bool> condition, bool @override = false)
+        {
+            if (list == null) throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, ExceptionMessages.NulleReferenceExceptioX0, nameof(list)));
+            if (condition == null) throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, ExceptionMessages.NulleReferenceExceptioX0, nameof(condition)));
+            if (values == null) return;
+            foreach (var value in values)
+            {
+                list.AddIfNotExist(value, condition, @override);
+            }
         }
     }
 }
