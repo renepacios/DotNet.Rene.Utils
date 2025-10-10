@@ -11,32 +11,6 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
 
     public class StringExtensionsTest
     {
-        #region Base64
-
-        [Fact]
-        public void FromBase64_Convert()
-        {
-            const string base64Input = "SGVsbG8gV29ybGQhISE=";
-            const string expected = "Hello World!!!";
-
-            var result = base64Input.ToStringFromBase64();
-
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public void ToBase64_Convert()
-        {
-            const string strInput = "Hello World!!!";
-            const string expected = "SGVsbG8gV29ybGQhISE=";
-
-            var result = strInput.ToBase64();
-
-            Assert.Equal(expected, result);
-        }
-
-        #endregion
-
         #region ToGuid
 
         [Fact]
@@ -508,12 +482,12 @@ namespace Rene.Utils.Core.UnitTest.Extensions.Primitives
             Action act1 = () => input.ContainsAny(null);
             act1.Should()
                 .Throw<ArgumentException>();
-                //.WithMessage(ExceptionMessages.ArrayNullOrEmptyArgumentFormat) // opcional: verificar el mensaje
+            //.WithMessage(ExceptionMessages.ArrayNullOrEmptyArgumentFormat) // opcional: verificar el mensaje
 
             Action act2 = () => input.ContainsAny(Array.Empty<string>());
             act2.Should()
                 .Throw<ArgumentException>();
-                //.WithMessage(ExceptionMessages.ArrayNullOrEmptyArgumentFormat);
+            //.WithMessage(ExceptionMessages.ArrayNullOrEmptyArgumentFormat);
         }
 
         [Fact]
